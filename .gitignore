@@ -2,3 +2,4 @@
 .env
 node_modules/
 client/dist/path/
+db/firebaseConfig.js
