@@ -5,7 +5,7 @@ const controller = require('./controllers');
 const router = express.Router();
 
 /*
-  Basic route setup for each db table
+  Basic route setup
 */
 
 // Users
