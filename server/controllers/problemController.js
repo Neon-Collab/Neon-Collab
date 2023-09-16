@@ -9,7 +9,8 @@ module.exports = {
       });
   },
   getOne: (req, res) => {
-    models.problems.getOneProblem()
+    const { id } = req.params; // Gets user id from query params
+    models.problems.getOneProblem(id)
       .then((response) => {
         res.status(200).send(response);
       });
