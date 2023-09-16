@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import LoginPage from './pages/LoginPage.jsx';
-import AppContext from './contexts/AppContext';
+import AppContext from './contexts/AppContext.jsx';
 // import { addUserData } from '../../db/exampleAddUserData.js';
 // import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
 
