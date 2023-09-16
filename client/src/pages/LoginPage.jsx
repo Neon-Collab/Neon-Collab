@@ -1,6 +1,6 @@
 import React from 'react';
-import LoginForm from '../components/LoginComponents/LoginForm';
-import SignupForm from '../components/LoginComponents/SignupForm';
+import LoginForm from '../components/LoginComponents/LoginForm.jsx';
+import SignupForm from '../components/LoginComponents/SignupForm.jsx';
 
 export default function LoginPage() {
   return (
