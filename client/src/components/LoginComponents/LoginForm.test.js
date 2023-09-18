@@ -6,8 +6,6 @@ import React from 'react';
 import { render, waitFor, fireEvent, screen } from '@testing-library/react';
 //import axios from 'axios';
 import LoginPage from '../../pages/LoginPage.jsx';
-import SignupForm from './SignupForm.jsx';
-import LoginForm from './LoginForm.jsx';
 
 describe('Login Page', () => {
   test('Render Login and SignUp forms conditionally', async () => {
