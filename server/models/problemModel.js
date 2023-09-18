@@ -12,7 +12,7 @@ module.exports = {
     return results.rows;
   },
   getOneProblem: async (id) => {
-    const text = 'SELECT * FROM users WHERE id = $1;';
+    const text = 'SELECT * FROM problems WHERE id = $1;';
     const values = [id];
     const results = await db.query(text, values);
     return results.rows;
