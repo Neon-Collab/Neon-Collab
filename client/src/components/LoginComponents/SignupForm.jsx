@@ -33,7 +33,7 @@ export default function SignupForm() {
       <input type="password" placeholder="Verify Password" required />
       <select
         value={skill}
-        onChange={(e) => e.target.value}
+        onChange={(e) => setSkill(e.target.value)}
         required
       >
         <option value="">Select your level of experience with JavaScript...</option>
