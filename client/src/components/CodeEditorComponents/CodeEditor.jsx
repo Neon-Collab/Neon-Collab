@@ -1,8 +1,21 @@
 import React from 'react';
+import AceEditor from 'react-ace';
+import 'ace-builds/src-noconflict/mode-javascript';
+// Cyberpunk style
+import 'ace-builds/src-noconflict/theme-monokai';
 
-function CodeEditor() {
+function CodeEditor({ value, onChange }) {
+
   return (
-    <div>Something over here</div>
+    <AceEditor
+      mode="javascript"
+      theme="monokai"
+      onChange={onChange}
+      value={value}
+      name="neon_code_editor"
+      highlightActiveLine
+      editorProps={{ $blockScrolling: true }}
+    />
   );
 }
 

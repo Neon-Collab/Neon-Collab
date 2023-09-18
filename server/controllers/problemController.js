@@ -17,7 +17,7 @@ module.exports = {
       });
   },
   getOne: (req, res) => {
-    const { id } = req.params; // Gets user id from query params
+    const { id } = req.params;
     models.problems.getOneProblem(id)
       .then((response) => {
         res.status(200).send(response);
