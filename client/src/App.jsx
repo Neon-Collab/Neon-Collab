@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
-// import LoginPage from './pages/LoginPage.jsx';
-import CodeEditorPage from './pages/CodeEditorPage.jsx';
-// import AppContext from './contexts/AppContext.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+// import CodeEditorPage from './pages/CodeEditorPage.jsx';
+import AppContext from './contexts/AppContext.jsx';
 // import { addUserData } from '../../db/exampleAddUserData.js';
 // import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
 
