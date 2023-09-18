@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import CodeEditor from '../components/CodeEditorComponents/CodeEditor.jsx';
 import SelectedProblem from '../components/CodeEditorComponents/SelectedProblem.jsx';
 
 function CodeEditorPage() {
   const [code, setCode] = useState('// Write your JavaScript code here...');
+  const { problemId } = useParams();
+
   const submitCode = () => {
     if (window.confirm('Would you like to submit your code?')) {
       // For testing only
       const userId = 1;
-      const problemId = 1;
+      // const problemId = 1;
 
       axios.post('/codeEditor/submit', {
         userId,
@@ -30,7 +33,7 @@ function CodeEditorPage() {
     <div>
       <div style={containerStyle}>
         <div style={problemStyle}>
-          <SelectedProblem />
+          <SelectedProblem problemId={problemId} />
         </div>
         <div>
           <CodeEditor value={code} onChange={setCode} />
