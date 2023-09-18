@@ -29,8 +29,8 @@ export default function SignupForm() {
       <input type="text" placeholder="Last Name" required />
       <input type="text" placeholder="Username" required />
       <input type="email" placeholder="Email" required />
-      <input type="text" placeholder="Password" required />
-      <input type="text" placeholder="Verify Password" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Verify Password" required />
       <select
         value={skill}
         onChange={(e) => e.target.value}
