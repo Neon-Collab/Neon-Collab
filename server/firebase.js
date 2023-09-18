@@ -57,7 +57,7 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-const registerWithEmailAndPassword = async (firstname, lastname, username, skill, email, password) => {
+const registerWithEmailAndPassword = async (firstname, lastname, username, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = res;
@@ -66,7 +66,6 @@ const registerWithEmailAndPassword = async (firstname, lastname, username, skill
       firstname,
       lastname,
       username,
-      skill,
       authProvider: 'local',
       email,
     });
