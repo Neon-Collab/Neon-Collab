@@ -17,6 +17,12 @@ module.exports = {
     'react',
   ],
   rules: {
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'ForInStatement',
+      },
+    ],
     'quote-props': ['error', 'consistent'],
     'import/extensions': [0, 'always'],
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
