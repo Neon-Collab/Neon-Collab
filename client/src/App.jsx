@@ -1,20 +1,30 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import LoginPage from './pages/LoginPage.jsx';
 import AppContext from './contexts/AppContext.jsx';
 // import { addUserData } from '../../db/exampleAddUserData.js';
 // import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
 
 function App() {
-  const [appContext, setAppContext] = useContext({});
+  const [user, setUser] = useState({});
   // useEffect(() => {
   //   addUserData();
   //   retrieveUserData();
   // }, []);
 
-  // appContext is an object to hold information needed across the app
-  // to update app context, use setAppContext and copy contents of the current appContext to update
+  const contextValue = useMemo(
+    () => ({
+      user,
+      setUser,
+    }),
+    [
+      user,
+      setUser,
+    ],
+  );
+  // add states and their setter functions that you want shared into...
+  // the use memo and dependency array
   return (
-    <AppContext.Provider value={{ appContext, setAppContext }}>
+    <AppContext.Provider value={contextValue}>
       <h1>Hello, Neon-Collab!</h1>
       <LoginPage />
     </AppContext.Provider>
