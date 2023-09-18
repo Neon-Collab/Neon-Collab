@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import LoginPage from './pages/LoginPage.jsx';
+// import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import AppContext from './contexts/AppContext.jsx';
 import Navbar from './components/Navbar.jsx';
 import { Routes, Route } from 'react-router-dom';

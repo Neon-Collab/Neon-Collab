@@ -1,4 +1,4 @@
-const db = require('../../db/dbConfig');
+const db = require('../../db/db.js');
 
 /*
   These functions are invoked by the controllers.
@@ -12,9 +12,10 @@ module.exports = {
     return results.rows;
   },
   getOneProblem: async (id) => {
-    const text = 'SELECT * FROM problems WHERE id = $1;';
+    const text = 'SELECT * FROM problems WHERE problem_id = $1;';
     const values = [id];
     const results = await db.query(text, values);
-    return results.rows;
+    console.log(results.rows)
+    return results.rows[0];
   },
 };
