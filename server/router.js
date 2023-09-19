@@ -19,3 +19,6 @@ router.get('/problems/:id', controller.problems.getOne);
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.addCode);
 module.exports = router;
+
+// Feedback
+router.get('/feedback', controller.feedback.getChats);
