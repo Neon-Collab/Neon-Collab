@@ -14,13 +14,16 @@ function ToggleBar({ isWeekendView, onToggle }) {
   );
 }
 
-function WeekdayPage() {
+function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
   return (
     <div>
       <h1>Mon-Thu page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList />
+          <ProblemsList
+            selectedProblemId={selectedProblemId}
+            setSelectedProblemId={setSelectedProblemId}
+          />
         </div>
         <div style={{ flex: 1 }}>
           <Leaderboard />
@@ -30,13 +33,16 @@ function WeekdayPage() {
   );
 }
 
-function WeekendPage() {
+function WeekendPage({ selectedProblemId, setSelectedProblemId }) {
   return (
     <div>
       <h1>Fri-Sun page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList />
+          <ProblemsList
+            selectedProblemId={selectedProblemId}
+            setSelectedProblemId={setSelectedProblemId}
+          />
         </div>
         <div style={{ flex: 1 }}>
           <Ranking />
@@ -46,7 +52,7 @@ function WeekendPage() {
   );
 }
 
-function ProblemsPage() {
+function ProblemsPage({ selectedProblemId, setSelectedProblemId }) {
   // get the current day of the week, 0 for Sunday, 1 for Monday, etc
   const currentDay = new Date().getDay();
   // check for the day, if it's Sunday or Friday or Saturday, isWeekendView
@@ -55,7 +61,12 @@ function ProblemsPage() {
   return (
     <div>
       <ToggleBar isWeekendView={isWeekendView} onToggle={() => setIsWeekendView(!isWeekendView)} />
-      {isWeekendView ? <WeekendPage /> : <WeekdayPage />}
+      {isWeekendView ? <WeekendPage selectedProblemId={selectedProblemId}
+          setSelectedProblemId={setSelectedProblemId}
+        />
+      :
+        <WeekdayPage selectedProblemId={selectedProblemId}
+          setSelectedProblemId={setSelectedProblemId} />}
     </div>
   );
 }

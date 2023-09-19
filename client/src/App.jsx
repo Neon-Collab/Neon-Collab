@@ -30,6 +30,8 @@ function App() {
   );
   // add states and their setter functions that you want shared into...
   // the use memo and dependency array
+  const [selectedProblemId, setSelectedProblemId] = useState(null);
+
   return (
     <div>
       <Navbar />
@@ -39,8 +41,8 @@ function App() {
       </AppContext.Provider>
       <div>
         <Routes>
-          <Route path="/problemspage" element={<ProblemsPage />} />
-          <Route path="/editor/:problemId" element={<CodeEditorPage />} />
+          <Route path="/problemspage" element={<ProblemsPage setSelectedProblemId={setSelectedProblemId} />} />
+          <Route path="/editor/:problemId" element={<CodeEditorPage setSelectedProblemId={setSelectedProblemId} />} />
           <Route path="/feedback" element={<Feedback />} />
         </Routes>
       </div>
