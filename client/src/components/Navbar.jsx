@@ -8,20 +8,25 @@ import AppContext from '../contexts/AppContext.jsx';
 function Navbar() {
   const { account, setAccount } = useContext(AppContext);
   const navigate = useNavigate();
+
   const signOut = () => {
     setAccount((previousObj) => ({
       ...previousObj,
       loggedIn: false,
     }));
-    logout();
-    console.log('Signing out...');
-    navigate('/');
+    try {
+      logout();
+      console.log('Signing out...');
+      navigate('/loginpage');
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
     <nav>
       <div>
-        <Link className="logo" to="/">neonCollab</Link>
+        <Link className="logo" to={account.loggedIn ? "/problemspage" : "/loginpage"}>neonCollab</Link>
         <Link className="link" to="/problemspage">Problems</Link>
         <Link className="link" to="/editor/:problemId">Editor</Link>
         <Link className="link" to="/feedback">Feedback</Link>

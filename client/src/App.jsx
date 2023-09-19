@@ -3,7 +3,7 @@ import LoginPage from './pages/LoginPage.jsx';
 // import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import AppContext from './contexts/AppContext.jsx';
 import Navbar from './components/Navbar.jsx';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import Feedback from './pages/Feedback.jsx';
 import ProblemsPage from './pages/ProblemsPage.jsx';
@@ -12,6 +12,7 @@ import ProblemsPage from './pages/ProblemsPage.jsx';
 // import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
 
 function App() {
+  const navigate = useNavigate();
   const [account, setAccount] = useState({
     loggedIn: false,
   });
@@ -32,6 +33,8 @@ function App() {
   );
   // add states and their setter functions that you want shared into...
   // the use memo and dependency array
+  useEffect(() => navigate('/loginpage'), []);
+
   return (
     <div>
       <AppContext.Provider value={contextValue}>
@@ -39,10 +42,10 @@ function App() {
         <h1>Hello, Neon-Collab!</h1>
         <div>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/loginpage" element={!account.loggedIn && <LoginPage />} />
             <Route path="/problemspage" element={account.loggedIn && <ProblemsPage />} />
-            <Route path="/editor/:problemId" element={<CodeEditorPage />} />
-            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/editor/:problemId" element={account.loggedIn && <CodeEditorPage />} />
+            <Route path="/feedback" element={account.loggedIn && <Feedback />} />
           </Routes>
         </div>
       </AppContext.Provider>
