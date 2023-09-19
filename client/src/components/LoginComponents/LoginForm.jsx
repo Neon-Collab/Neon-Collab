@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  signInWithEmailAndPasword
-} from '../../../../server/firebase';
+import { redirect } from 'react-router-dom';
+
 import {
   logInWithEmailAndPassword,
 } from '../../../../server/controllers/firebaseController';
@@ -12,17 +10,21 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const submitLoginInfo = () => {
-    // prevent default?
-    logInWithEmailAndPassword(email, password);
-    // add navigation if successful
+  const submitLoginInfo = async (event) => {
+    try {
+      await logInWithEmailAndPassword(email, password);
+      redirect('/problemspage');
+    } catch (err) {
+      event.preventDefault();
+      console.error(err);
+    }
   };
 
   return (
-    <form onSubmit={submitLoginInfo}>
+    <form onSubmit={(e) => submitLoginInfo(e)}>
       <input
         type="email"
-        placeholder="email"
+        placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />

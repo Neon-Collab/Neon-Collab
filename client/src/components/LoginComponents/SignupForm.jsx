@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { redirect } from 'react-router-dom';
 import {
   auth,
-  signInWithEmailAndPasword
 } from '../../../../server/firebase';
 import {
   registerWithEmailAndPassword,
@@ -14,23 +14,38 @@ export default function SignupForm() {
   const [username, setUsername]= useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [verifyPassword, setVerifyPassword] = useState('');
   const [skill, setSkill] = useState('');
 
-  const submitLoginInfo = () => {
+  const submitRegisterInfo = async (event) => {
+    if (password !== verifyPassword) {
+      alert('Please verify that passwords match');
+      event.preventDefault();
+      return;
+    }
+    if (password.length < 8) {
+      alert('Password must be at least 8 characters');
+      event.preventDefault();
+      return;
+    }
     // prevent default?
-    logInWithEmailAndPassword(email, password);
-    // add navigation if successful
+    try {
+      await registerWithEmailAndPassword(firstname, lastname, username, email, password);
+      redirect('/problemspage');
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   // add skill level/submit username/email/skill
   return (
-    <form onSubmit={() => { console.log('Form Submitted'); }}>
-      <input type="text" placeholder="First Name" required />
-      <input type="text" placeholder="Last Name" required />
-      <input type="text" placeholder="Username" required />
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <input type="password" placeholder="Verify Password" required />
+    <form onSubmit={(e) => submitRegisterInfo(e)}>
+      <input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
+      <input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setLastName(e.target.value)} required />
+      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <input type="password" placeholder="Verify Password" value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} required />
       <select
         value={skill}
         onChange={(e) => setSkill(e.target.value)}

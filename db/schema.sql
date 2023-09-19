@@ -1,6 +1,6 @@
 -- start：psql -U user postgres
 -- CREATE DATABASE neoncollab;
--- database: \c neoncolla
+-- database: \c neoncollab
 -- run: \i db/schema.sql
 
 
