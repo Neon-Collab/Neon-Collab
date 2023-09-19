@@ -2,7 +2,6 @@
 let getUserScore = function (user) {
   var sum = 0;
 
-  // iterate over problems, add scores and boosts to sum
   user.problems.map((problem) => {
     // add score
     sum += problem.score;
@@ -16,14 +15,13 @@ let getUserScore = function (user) {
     }
     // add feedback participation boost
     if (problem.feedback === true) {
-      sum += (problem.score * 0.2) // 20% boost
+      sum += (problem.score * 0.2); // 20% boost
     }
   });
   return sum;
 };
 
-// Calculate ranks of all users
-
+// Rank all users
 let rankUsers = function (userScores) {
   var rankedScores = [];
   var rank = 1;
