@@ -10,6 +10,7 @@ import AppContext from '../../contexts/AppContext.jsx';
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const { account, setAccount } = useContext(AppContext);
   const navigate = useNavigate();
@@ -19,10 +20,10 @@ export default function LoginForm() {
       return;
     }
     if (user) {
-      setAccount((previousObj) => ({
-        ...previousObj,
+      setAccount({
+        ...account,
         loggedIn: true,
-      }));
+      });
       navigate('/problemspage');
     }
   }, [user, loading]);
@@ -43,12 +44,14 @@ export default function LoginForm() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
       <input type="button" value="Log In" onClick={(e) => submitLoginInfo(e)} />
     </form>

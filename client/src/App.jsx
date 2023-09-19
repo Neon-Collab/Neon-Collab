@@ -33,19 +33,18 @@ function App() {
   );
   // add states and their setter functions that you want shared into...
   // the use memo and dependency array
-  useEffect(() => navigate('/loginpage'), []);
 
   return (
     <div>
       <AppContext.Provider value={contextValue}>
         { account.loggedIn && <Navbar /> }
-        <h1>Hello, Neon-Collab!</h1>
+        { !account.loggedIn && <h1>Hello, Neon-Collab!</h1> }
+        { !account.loggedIn && <LoginPage />}
         <div>
           <Routes>
-            <Route path="/loginpage" element={!account.loggedIn && <LoginPage />} />
-            <Route path="/problemspage" element={account.loggedIn && <ProblemsPage />} />
-            <Route path="/editor/:problemId" element={account.loggedIn && <CodeEditorPage />} />
-            <Route path="/feedback" element={account.loggedIn && <Feedback />} />
+            <Route path="/problemspage" element={<ProblemsPage />} />
+            <Route path="/editor/:problemId" element={<CodeEditorPage />} />
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </div>
       </AppContext.Provider>

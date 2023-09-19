@@ -24,14 +24,20 @@ export default function SignupForm() {
       return;
     }
     if (user) {
-      setAccount((previousObj) => ({
-        ...previousObj,
+      setAccount({
+        ...account,
         loggedIn: true,
-      }));
+        firstname,
+        lastname,
+        username,
+        email,
+        skill,
+      });
       navigate('/problemspage');
     }
   }, [user, loading]);
 
+  //todo: send info to DB so it can be matched to email in postgres
   const submitRegisterInfo = async (event) => {
     event.preventDefault();
     if (password !== verifyPassword) {
@@ -44,10 +50,7 @@ export default function SignupForm() {
     }
     try {
       registerWithEmailAndPassword(firstname, lastname, username, email, password);
-      console.log('successful login');
-      navigate('/problemspage');
     } catch (err) {
-      console.log('unsuccessful login');
       console.error(err);
     }
   };
