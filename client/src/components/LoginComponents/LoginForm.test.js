@@ -31,7 +31,6 @@ describe('Login Page', () => {
     const Wrapper = () => {
       const [newUser, setNewUser] = useState(false);
       const [account, setAccount] = useState({ loggedIn: false});
-      //const { account, setAccount } = useContext(AppContext);
       return (
         <AppContext.Provider
           value={{account, setAccount}}
@@ -55,5 +54,71 @@ describe('Login Page', () => {
     await waitFor(() => fireEvent.click(screen.queryByText('Already a member? Log In')));
     await waitFor(() => expect(screen.queryByText('New to NeonCollab? Create an Account')).toBeTruthy());
     await waitFor(() => expect(screen.queryByText('Already a member? Log In')).toBeNull());
+  });
+
+  test('Passwords must match', async () => {
+    useAuthState.mockReturnValue([null, false, null]);
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    const Wrapper = () => {
+      const [newUser, setNewUser] = useState(false);
+      const [account, setAccount] = useState({
+        loggedIn: false,
+        firstname: 'test',
+        lastname: 'test',
+        username: 'test',
+        email: 'test@test.com',
+        password: '12345678',
+        verifyPassword: 'asdfghjk'
+      });
+      //const { account, setAccount } = useContext(AppContext);
+      return (
+        <AppContext.Provider
+          value={{account, setAccount}}
+        >
+          <LoginPage
+            setNewUser={setNewUser}
+            newUser={newUser}
+          />
+        </AppContext.Provider>
+      );
+    };
+
+    const { queryByText } = await render(<Wrapper />);
+    await waitFor(() => fireEvent.click(screen.queryByText('New to NeonCollab? Create an Account')));
+    await waitFor(() => fireEvent.click(screen.queryByText('Create Account')));
+    await waitFor(() => expect(window.alert).toHaveBeenCalled());
+  });
+
+  test('Passwords must be at least 8 characters', async () => {
+    useAuthState.mockReturnValue([null, false, null]);
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    const Wrapper = () => {
+      const [newUser, setNewUser] = useState(false);
+      const [account, setAccount] = useState({
+        loggedIn: false,
+        firstname: 'test',
+        lastname: 'test',
+        username: 'test',
+        email: 'test@test.com',
+        password: '1234567',
+        verifyPassword: '1234567'
+      });
+      //const { account, setAccount } = useContext(AppContext);
+      return (
+        <AppContext.Provider
+          value={{account, setAccount}}
+        >
+          <LoginPage
+            setNewUser={setNewUser}
+            newUser={newUser}
+          />
+        </AppContext.Provider>
+      );
+    };
+
+    const { queryByText } = await render(<Wrapper />);
+    await waitFor(() => fireEvent.click(screen.queryByText('New to NeonCollab? Create an Account')));
+    await waitFor(() => fireEvent.click(screen.queryByText('Create Account')));
+    await waitFor(() => expect(window.alert).toHaveBeenCalled());
   });
 });
