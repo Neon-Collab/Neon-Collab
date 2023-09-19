@@ -31,10 +31,10 @@ function App() {
   return (
     <div>
       <Navbar />
-      <AppContext.Provider value={contextValue}>
+      {/* <AppContext.Provider value={contextValue}>
         <h1>Hello, Neon-Collab!</h1>
         <LoginPage />
-      </AppContext.Provider>
+      </AppContext.Provider> */}
       <div>
         <Routes>
           <Route path="/problemspage" element={<h1>Problems Page</h1>} />
