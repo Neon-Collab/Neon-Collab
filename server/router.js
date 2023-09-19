@@ -17,5 +17,5 @@ router.get('/problems', controller.problems.get);
 router.get('/problems/:id', controller.problems.getOne);
 
 // Submission/Code editor
-router.post('/codeEditor/submit', controller.codeEditor.addCode);
+router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 module.exports = router;
