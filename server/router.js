@@ -25,3 +25,5 @@ router.get('/feedback', controller.feedback.getChats);
 
 // Ranking
 router.get('/rank', controller.rank.getRanks);
+router.get('/submissions', controller.feedback.getSubmissions);
+router.get('/messages', controller.feedback.getMessages);
