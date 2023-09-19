@@ -1,6 +1,6 @@
 -- start：psql -U user postgres
 -- CREATE DATABASE neoncollab;
--- database: \c neoncollab;
+-- database: \c neoncollab
 -- run: \i db/schema.sql
 
 
@@ -30,6 +30,13 @@ DROP TABLE IF EXISTS chat CASCADE;
 CREATE TABLE chat (
     chat_id SERIAL PRIMARY KEY,
     problem_id INT REFERENCES problems(problem_id),
+    solver_id INT REFERENCES users(user_id),
+    reviewer_id INT REFERENCES users(user_id)
+);
+
+DROP TABLE IF EXISTS message CASCADE;
+CREATE TABLE messages (
+    chat_id INT REFERENCES chat(chat_id),
     user_id INT REFERENCES users(user_id),
     message VARCHAR(1000),
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -53,3 +60,12 @@ CREATE TABLE submission (
     score FLOAT,
     PRIMARY KEY (user_id, problem_id)
 );
+
+DROP TABLE IF EXISTS rankings CASCADE;
+CREATE TABLE rankings (
+    user_id INT REFERENCES users(user_id),
+    total_score FLOAT,
+    problems_amt INT,
+    rank INT,
+    PRIMARY KEY (user_id)
+)
