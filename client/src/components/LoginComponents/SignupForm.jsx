@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../../server/firebase';
 import {
   registerWithEmailAndPassword,
 } from '../../../../server/controllers/firebaseController';
+import AppContext from '../../contexts/AppContext.jsx';
 
 export default function SignupForm() {
   const [firstname, setFirstname] = useState('');
@@ -15,6 +16,7 @@ export default function SignupForm() {
   const [verifyPassword, setVerifyPassword] = useState('');
   const [skill, setSkill] = useState('');
   const [user, loading, error] = useAuthState(auth);
+  const { account, setAccount } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +24,10 @@ export default function SignupForm() {
       return;
     }
     if (user) {
-      //add hide page context
+      setAccount((previousObj) => ({
+        ...previousObj,
+        loggedIn: true,
+      }));
       navigate('/problemspage');
     }
   }, [user, loading]);

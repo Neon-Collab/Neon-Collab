@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../../server/firebase.js';
 import { useNavigate } from 'react-router-dom';
 import {
   logInWithEmailAndPassword,
 } from '../../../../server/controllers/firebaseController';
+import AppContext from '../../contexts/AppContext.jsx';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, loading, error] = useAuthState(auth);
+  const { account, setAccount } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +19,10 @@ export default function LoginForm() {
       return;
     }
     if (user) {
-      //add hide page context
+      setAccount((previousObj) => ({
+        ...previousObj,
+        loggedIn: true,
+      }));
       navigate('/problemspage');
     }
   }, [user, loading]);

@@ -1,10 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logout from '../../../server/controllers/firebaseController.js'
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../server/controllers/firebaseController.js';
+import AppContext from '../contexts/AppContext.jsx';
 
 // added logout button accessible in the navbar, feel free to style/change as needed
 // otherwise, to log out you would need to clear cookies
 function Navbar() {
+  const { account, setAccount } = useContext(AppContext);
+  const navigate = useNavigate();
+  const signOut = () => {
+    setAccount((previousObj) => ({
+      ...previousObj,
+      loggedIn: false,
+    }));
+    logout();
+    console.log('Signing out...');
+    navigate('/');
+  };
+
   return (
     <nav>
       <div>
@@ -13,7 +26,7 @@ function Navbar() {
         <Link className="link" to="/editor/:problemId">Editor</Link>
         <Link className="link" to="/feedback">Feedback</Link>
       </div>
-      <input type="button" onClick={logout}>Sign Out</input>
+      <input type="button" value="Sign Out" onClick={signOut} />
       <Link to="/profile"><img className="profile-pic" src="https://i.stack.imgur.com/frlIf.png" alt="profile pic" /></Link>
     </nav>
   );
