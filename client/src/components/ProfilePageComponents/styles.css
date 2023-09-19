@@ -7,6 +7,6 @@
 }
 
 .component-container {
-  border-style: solid 1px red;
+  border: solid 1px red;
   width: 49%;
 }
