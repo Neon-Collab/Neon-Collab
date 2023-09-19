@@ -22,3 +22,6 @@ module.exports = router;
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
+
+// Ranking
+router.get('/rank', controller.rank.getRanks);
