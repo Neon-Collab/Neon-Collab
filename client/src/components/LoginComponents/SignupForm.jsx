@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   auth,
 } from '../../../../server/firebase';
@@ -16,30 +16,31 @@ export default function SignupForm() {
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [skill, setSkill] = useState('');
+  const navigate = useNavigate();
 
   const submitRegisterInfo = async (event) => {
+    event.preventDefault();
     if (password !== verifyPassword) {
       alert('Please verify that passwords match');
-      event.preventDefault();
       return;
     }
     if (password.length < 8) {
       alert('Password must be at least 8 characters');
-      event.preventDefault();
       return;
     }
-    // prevent default?
     try {
-      await registerWithEmailAndPassword(firstname, lastname, username, email, password);
-      redirect('/problemspage');
+      registerWithEmailAndPassword(firstname, lastname, username, email, password);
+      console.log('successful login');
+      navigate('/problemspage');
     } catch (err) {
+      console.log('unsuccessful login');
       console.error(err);
     }
   };
 
   // add skill level/submit username/email/skill
   return (
-    <form onSubmit={(e) => submitRegisterInfo(e)}>
+    <form>
       <input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
       <input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setLastName(e.target.value)} required />
       <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
@@ -57,7 +58,7 @@ export default function SignupForm() {
         <option value="Advanced">Advanced</option>
         <option value="Expert">Expert</option>
       </select>
-      <input type="submit" value="Create Account" />
+      <input type="button" value="Create Account" onClick={(e) => submitRegisterInfo(e)} />
     </form>
   );
 }
