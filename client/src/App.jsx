@@ -6,6 +6,8 @@ import Navbar from './components/Navbar.jsx';
 import { Routes, Route } from 'react-router-dom';
 import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import Feedback from './pages/Feedback.jsx';
+import ProblemsPage from './pages/ProblemsPage.jsx';
+
 // import { addUserData } from '../../db/exampleAddUserData.js';
 // import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
 
@@ -37,8 +39,8 @@ function App() {
       </AppContext.Provider> */}
       <div>
         <Routes>
-          <Route path="/problemspage" element={<h1>Problems Page</h1>} />
-          <Route path="/editor" element={<CodeEditorPage />} />
+          <Route path="/problemspage" element={<ProblemsPage />} />
+          <Route path="/editor/:problemId" element={<CodeEditorPage />} />
           <Route path="/feedback" element={<Feedback />} />
         </Routes>
       </div>
