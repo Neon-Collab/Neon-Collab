@@ -1,9 +1,12 @@
 import React from 'react';
 
-function UserSolution() {
+function UserSolution({ submissions, selectedProblem }) {
   return (
     <div className="user-solution container">
-      <h1>User Solution</h1>
+      <h1>Your Solution</h1>
+      {submissions.length && submissions.map((submission) => (
+        submission.problem_id === selectedProblem ? <div>{submission.code}</div> : <div />
+      ))}
     </div>
   );
 }

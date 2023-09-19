@@ -14,16 +14,13 @@ function ToggleBar({ isWeekendView, onToggle }) {
   );
 }
 
-function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
+function WeekdayPage() {
   return (
     <div>
       <h1>Mon-Thu page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList
-            selectedProblemId={selectedProblemId}
-            setSelectedProblemId={setSelectedProblemId}
-          />
+          <ProblemsList />
         </div>
         <div style={{ flex: 1 }}>
           <Leaderboard />
@@ -33,26 +30,23 @@ function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
   );
 }
 
-function WeekendPage({ selectedProblemId, setSelectedProblemId }) {
+function WeekendPage() {
   return (
     <div>
       <h1>Fri-Sun page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList
-            selectedProblemId={selectedProblemId}
-            setSelectedProblemId={setSelectedProblemId}
-          />
+          <ProblemsList />
         </div>
         <div style={{ flex: 1 }}>
-          <Ranking problemId={selectedProblemId} />
+          <Ranking />
         </div>
       </div>
     </div>
   );
 }
 
-function ProblemsPage({ selectedProblemId, setSelectedProblemId }) {
+function ProblemsPage() {
   // get the current day of the week, 0 for Sunday, 1 for Monday, etc
   const currentDay = new Date().getDay();
   // check for the day, if it's Sunday or Friday or Saturday, isWeekendView
@@ -61,12 +55,7 @@ function ProblemsPage({ selectedProblemId, setSelectedProblemId }) {
   return (
     <div>
       <ToggleBar isWeekendView={isWeekendView} onToggle={() => setIsWeekendView(!isWeekendView)} />
-      {isWeekendView ? <WeekendPage selectedProblemId={selectedProblemId}
-          setSelectedProblemId={setSelectedProblemId}
-        />
-      :
-        <WeekdayPage selectedProblemId={selectedProblemId}
-          setSelectedProblemId={setSelectedProblemId} />}
+      {isWeekendView ? <WeekendPage /> : <WeekdayPage />}
     </div>
   );
 }
