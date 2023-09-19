@@ -1,6 +1,6 @@
 import React from 'react';
 import ProblemsList from '../components/ProblemPageComponents/ProblemsList';
-import Ranking from '../components/ProblemPageComponents/Ranking';
+import Ranking from '../components/ProblemPageComponents/RankingbyProblem';
 import Leaderboard from '../components/ProblemPageComponents/Leaderboard';
 
 // add a toggle button for switching views, only for presentation purpose
@@ -45,7 +45,7 @@ function WeekendPage({ selectedProblemId, setSelectedProblemId }) {
           />
         </div>
         <div style={{ flex: 1 }}>
-          <Ranking />
+          <Ranking problemId={selectedProblemId} />
         </div>
       </div>
     </div>
