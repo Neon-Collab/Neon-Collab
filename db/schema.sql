@@ -69,18 +69,3 @@ CREATE TABLE rankings (
     rank INT,
     PRIMARY KEY (user_id)
 )
-
--- COPY users(user_id, username, first_name, last_name, email, password)
--- FROM '/Users/brandongomez/Desktop/users.csv'
--- DELIMITER ','
--- CSV HEADER;
-
--- COPY problems(problem_id, problem_name, description, difficulty, problem_number)
--- FROM '/Users/brandongomez/Desktop/problems.csv'
--- DELIMITER ','
--- CSV HEADER;
-
--- COPY chat(chat_id, problem_id, solver_id, reviewer_id)
--- FROM '/Users/brandongomez/Desktop/chat.csv'
--- DELIMITER ','
--- CSV HEADER;

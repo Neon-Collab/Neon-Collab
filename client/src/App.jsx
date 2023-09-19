@@ -46,6 +46,7 @@ function App() {
             <Route path="/problemspage" element={<ProblemsPage />} />
             <Route path="/editor/:problemId" element={<CodeEditorPage />} />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </div>
       </AppContext.Provider>
