@@ -5,7 +5,6 @@ import CodeEditor from '../components/CodeEditorComponents/CodeEditor.jsx';
 import SelectedProblem from '../components/CodeEditorComponents/SelectedProblem.jsx';
 
 function CodeEditorPage({ setSelectedProblemId }) {
-  const [code, setCode] = useState('// Write your JavaScript code here...');
   const { problemId } = useParams();
   const [problem, setProblem] = useState(null);
   const [code, setCode] = useState('Loading...');
