@@ -1,4 +1,4 @@
-const rankUsers = require('./ranking');
+const { rankUsers, getUserScore } = require('./ranking');
 
 const scores = [
   {
@@ -45,6 +45,30 @@ const scores2 = [
     score: 2,
   },
 ];
+
+const oneUser = {
+  id: 3,
+  problems: [
+    {
+      id: 7,
+      difficulty: 'hard',
+      feedback: false,
+      score: 1
+    },
+    {
+      id: 8,
+      difficulty: 'hard',
+      feedback: false,
+      score: 1
+    },
+    {
+      id: 12,
+      difficulty: 'nightmare',
+      feedback: true,
+      score: 1,
+    },
+  ],
+};
 
 describe.only('rankUsers', () => {
   const expected = [
@@ -107,6 +131,13 @@ describe.only('rankUsers', () => {
 ]
   it('Should rank users by their score and assign ties appropriately', () => {
     expect(rankUsers(scores2)).toEqual(expect.arrayContaining(expected2));
-  })
+  });
 });
 
+describe.only('getUserScore', () => {
+  it('Should calculate a user\'s overall score based on problems completed. Includes modifiers for problem difficulty and feedback participation',
+    () => {
+      expect(getUserScore(oneUser)).toBe(5.2);
+    },
+  );
+});
