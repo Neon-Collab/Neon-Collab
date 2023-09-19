@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import CodeEditor from '../components/CodeEditorComponents/CodeEditor.jsx';
 import SelectedProblem from '../components/CodeEditorComponents/SelectedProblem.jsx';
 
-function CodeEditorPage() {
+function CodeEditorPage({ setSelectedProblemId }) {
   const [code, setCode] = useState('// Write your JavaScript code here...');
   const { problemId } = useParams();
+
+  useEffect(() => {
+    if (setSelectedProblemId) {
+      setSelectedProblemId(problemId);
+    }
+  }, [problemId, setSelectedProblemId]);
 
   const submitCode = () => {
     if (window.confirm('Would you like to submit your code?')) {

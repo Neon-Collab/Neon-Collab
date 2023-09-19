@@ -9,7 +9,11 @@ import { auth } from '../../../server/firebase';
 // we should keep in the nav bar to be accessible everywhere
 // otherwise, to log out you would need to clear cookies
 function Navbar() {
-  const { account, setAccount } = useContext(AppContext);
+  // const { account, setAccount } = useContext(AppContext);
+  const context = useContext(AppContext);
+  console.log(context);
+
+  const { account, setAccount } = context;
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -39,4 +43,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+  export default Navbar;
