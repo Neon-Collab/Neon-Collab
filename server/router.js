@@ -22,3 +22,5 @@ module.exports = router;
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
+router.get('/submissions', controller.feedback.getSubmissions);
+router.get('/messages', controller.feedback.getMessages);
