@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function SelectedProblem() {
-  const [problem, setProblem] = useState(null);
-
-  useEffect(() => {
-    // Testing
-    const problemId = 1;
-
-    axios.get(`/problems/${problemId}`)
-      .then((res) => {
-        setProblem(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+function SelectedProblem({ problem }) {
   if (!problem) {
     return <p>Loading...</p>;
   }
