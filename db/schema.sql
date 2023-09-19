@@ -60,3 +60,12 @@ CREATE TABLE submission (
     score FLOAT,
     PRIMARY KEY (user_id, problem_id)
 );
+
+DROP TABLE IF EXISTS rankings CASCADE;
+CREATE TABLE rankings (
+    user_id INT REFERENCES users(user_id),
+    total_score FLOAT,
+    problems_amt INT,
+    rank INT,
+    PRIMARY KEY (user_id)
+)
