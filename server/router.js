@@ -15,6 +15,7 @@ router.get('/users/:id', controller.users.getOne);
 // Problems
 router.get('/problems', controller.problems.get);
 router.get('/problems/:id', controller.problems.getOne);
+router.get('/problemsWithScores', controller.problems.getWithScores);
 
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.addCode);

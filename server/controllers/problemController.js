@@ -27,4 +27,14 @@ module.exports = {
         res.sendStatus(500);
       });
   },
+  getWithScores: (req, res) => {
+    models.problems.getProblemsWithScores()
+      .then((data) => {
+        res.status(200).json(data);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500);
+      });
+  },
 };

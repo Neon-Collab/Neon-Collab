@@ -1,5 +1,6 @@
 import React from 'react';
 import ProblemsList from '../components/ProblemPageComponents/ProblemsList';
+import ProblemsListFri from '../components/ProblemPageComponents/ProblemsListFri';
 import Ranking from '../components/ProblemPageComponents/RankingbyProblem';
 import Leaderboard from '../components/ProblemPageComponents/Leaderboard';
 
@@ -36,7 +37,7 @@ function WeekendPage() {
       <h1>Fri-Sun page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList />
+          <ProblemsListFri />
         </div>
         <div style={{ flex: 1 }}>
           <Ranking />
