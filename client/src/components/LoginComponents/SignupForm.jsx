@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import {
-  auth,
-} from '../../../../server/firebase';
+import { auth } from '../../../../server/firebase';
 import {
   registerWithEmailAndPassword,
 } from '../../../../server/controllers/firebaseController';
@@ -11,12 +9,23 @@ import {
 export default function SignupForm() {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastName] = useState('');
-  const [username, setUsername]= useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [skill, setSkill] = useState('');
+  const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    if (user) {
+      //add hide page context
+      navigate('/problemspage');
+    }
+  }, [user, loading]);
 
   const submitRegisterInfo = async (event) => {
     event.preventDefault();
