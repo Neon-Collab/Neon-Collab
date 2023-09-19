@@ -1,6 +1,6 @@
 -- start：psql -U user postgres
 -- CREATE DATABASE neoncollab;
--- database: \c neoncolla
+-- database: \c neoncollab;
 -- run: \i db/schema.sql
 
 
@@ -11,7 +11,6 @@ CREATE TABLE users (
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     email VARCHAR(60) NOT NULL,
-    password VARCHAR(255) NOT NULL,
     photo BYTEA,
     skill_level VARCHAR(50)
 );
@@ -20,9 +19,10 @@ DROP TABLE IF EXISTS problems CASCADE;
 CREATE TABLE problems (
     problem_id SERIAL PRIMARY KEY,
     problem_name VARCHAR(255) NOT NULL,
+    -- will change this in the next pr
     description TEXT,
     difficulty VARCHAR(50) NOT NULL,
-    problem_code TEXT,
+    problem_function_name VARCHAR(50),
     problem_number INTEGER NOT NULL
 );
 
