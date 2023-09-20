@@ -17,8 +17,8 @@ module.exports = {
       });
   },
   getOne: (req, res) => {
-    const { id } = req.params;
-    models.users.getOneUser(id)
+    const { username } = req.params;
+    models.users.getOneUser(username)
       .then((response) => {
         res.status(200).send(response);
       })

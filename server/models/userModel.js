@@ -11,9 +11,9 @@ module.exports = {
     const results = await db.query(text);
     return results.rows;
   },
-  getOneUser: async (id) => {
-    const text = 'SELECT * FROM users WHERE id = $1;';
-    const values = [id];
+  getOneUser: async (username) => {
+    const text = 'SELECT * FROM users WHERE username = $1;';
+    const values = [username];
     const results = await db.query(text, values);
     return results.rows;
   },
