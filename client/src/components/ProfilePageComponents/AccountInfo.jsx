@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import AppContext from '../../contexts/AppContext.jsx';
 
 export default function AccountInfo() {
+  const { account, setAccount } = useContext(AppContext);
   return (
     <div className="component-container">
       <h1>Account Information</h1>
