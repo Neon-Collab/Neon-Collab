@@ -4,9 +4,9 @@ const problems = require('../problems/problemsSeed.js');
 const seedDatabase = async () => {
   for (let problem of problems) {
     const problemInsert = {
-      text: 'INSERT INTO problems(problem_name, description, difficulty, problem_code, problem_number) VALUES($1, $2, $3, $4, $5) RETURNING problem_id',
+      text: 'INSERT INTO problems(problem_name, description, difficulty, problem_function_name, problem_number) VALUES($1, $2, $3, $4, $5) RETURNING problem_id',
       values: [problem.name, problem.description,
-        problem.difficulty, problem.problem_code, problem.problem_number],
+        problem.difficulty, problem.problem_function_name, problem.problem_number],
     };
 
     try {
