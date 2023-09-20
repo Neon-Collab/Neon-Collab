@@ -11,7 +11,6 @@ CREATE TABLE users(
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     email VARCHAR(60) NOT NULL,
-    password VARCHAR(255) NOT NULL,
     photo BYTEA,
     skill_level VARCHAR(50)
 );
@@ -20,9 +19,10 @@ DROP TABLE IF EXISTS problems CASCADE;
 CREATE TABLE problems(
     problem_id SERIAL PRIMARY KEY,
     problem_name VARCHAR(255) NOT NULL,
+    -- will change this in the next pr
     description TEXT,
     difficulty VARCHAR(50) NOT NULL,
-    problem_code TEXT,
+    problem_function_name VARCHAR(50),
     problem_number INTEGER NOT NULL
 );
 
@@ -71,22 +71,4 @@ CREATE TABLE rankings(
     PRIMARY KEY (user_id)
 );
 
-COPY users(user_id, username, first_name, last_name, email, password)
-FROM '/Users/patrickalexandre/Downloads/users.csv'
-DELIMITER ','
-CSV HEADER;
 
-COPY problems(problem_id, problem_name, description, difficulty, problem_number)
-FROM '/Users/patrickalexandre/Downloads/problems.csv'
-DELIMITER ','
-CSV HEADER;
-
-COPY chat(chat_id, problem_id, solver_id, reviewer_id)
-FROM '/Users/patrickalexandre/Downloads/chat.csv'
-DELIMITER ','
-CSV HEADER;
-
-COPY submission
-FROM '/Users/patrickalexandre/Downloads/submissions.csv'
-DELIMITER ','
-CSV HEADER;
