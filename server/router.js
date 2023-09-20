@@ -17,6 +17,7 @@ router.get('/logout', controller.login.logout);
 // Users
 router.get('/users', controller.users.get);
 router.get('/users/:id', controller.users.getOne);
+router.post('/addUser', controller.users.addUser);
 
 // Problems
 router.get('/problems', controller.problems.get);
