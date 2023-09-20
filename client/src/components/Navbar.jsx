@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { logout } from '../../../server/controllers/firebaseController.js';
@@ -6,10 +7,12 @@ import AppContext from '../contexts/AppContext.jsx';
 import WeekendContext from '../contexts/WeekendContext.jsx';
 import { auth } from '../../../server/firebase';
 
+
 // added logout button accessible in the navbar, feel free to style/change as needed
 // we should keep in the nav bar to be accessible everywhere
 // otherwise, to log out you would need to clear cookies
 function Navbar() {
+
   // const { account, setAccount } = useContext(AppContext);
   const context = useContext(AppContext);
   const { weekend, toggleWeekend } = useContext(WeekendContext);
@@ -18,17 +21,19 @@ function Navbar() {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (loading) {
-      return;
-    }
-    if (!user) {
+  const logout = async () => {
+    try {
+      await axios.get('/api/logout');
       setAccount({
-        loggedIn: false
+        ...account,
+        loggedIn: false,
+        username: '',
       });
       navigate('/');
+    } catch (err) {
+      console.error(err);
     }
-  }, [user]);
+  };
 
   return (
     <nav>

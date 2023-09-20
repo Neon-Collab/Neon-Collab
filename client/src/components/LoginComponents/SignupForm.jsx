@@ -1,10 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../../../server/firebase';
-import {
-  registerWithEmailAndPassword,
-} from '../../../../server/controllers/firebaseController';
 import AppContext from '../../contexts/AppContext.jsx';
 
 export default function SignupForm() {
@@ -15,29 +11,9 @@ export default function SignupForm() {
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [skill, setSkill] = useState('');
-  const [user, loading, error] = useAuthState(auth);
   const { account, setAccount } = useContext(AppContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (loading) {
-      return;
-    }
-    if (user) {
-      setAccount({
-        ...account,
-        loggedIn: true,
-        firstname,
-        lastname,
-        username,
-        email,
-        skill,
-      });
-      navigate('/problemspage');
-    }
-  }, [user, loading]);
-
-  //todo: send info to DB so it can be matched to email in postgres
   const submitRegisterInfo = async (event) => {
     event.preventDefault();
     if (password !== verifyPassword) {
@@ -49,13 +25,25 @@ export default function SignupForm() {
       return;
     }
     try {
-      registerWithEmailAndPassword(firstname, lastname, username, email, password);
+      await axios.post('/api/signup', {
+        firstname,
+        lastname,
+        username,
+        email,
+        password,
+      });
+      setAccount({
+        ...account,
+        loggedIn: true,
+        username,
+      });
+      // TODO: submit/save account info to postgres DB here
+      navigate('/problemspage');
     } catch (err) {
-      console.error(err);
+      alert(err.response.data);
     }
   };
 
-  // add skill level/submit username/email/skill
   return (
     <form>
       <input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />

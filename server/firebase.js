@@ -1,23 +1,7 @@
-import { initializeApp } from 'firebase/app';
+const { initializeApp } = require('firebase/app');
 // import { getAnalytics } from 'firebase/analytics';
-
-import {
-  getAuth,
-} from 'firebase/auth';
-
-import {
-  getFirestore,
-} from 'firebase/firestore';
-
-/*
-"Unlike how API keys are typically used, API keys for Firebase services
-are not used to control access to backend resources; that can only be
-done with Firebase Security Rules (to control which users can access
-resources) and App Check (to control which apps can access resources).
-Usually, you need to fastidiously guard API keys (for example, by using
-a vault service or setting the keys as environment variables); however,
-API keys for Firebase services are ok to include in code or checked-in config files."
-*/
+const { getAuth } = require('firebase/auth');
+const { getFirestore } = require('firebase/firestore');
 
 // tl;dr: Firebase config is ok to include in checked-in code.
 // Docs: https://firebase.google.com/docs/projects/api-keys#api-keys-for-firebase-are-different
@@ -37,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export {
+module.exports = {
   auth,
   db,
 };
