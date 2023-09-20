@@ -5,9 +5,20 @@ import CodeEditor from '../components/CodeEditorComponents/CodeEditor.jsx';
 import SelectedProblem from '../components/CodeEditorComponents/SelectedProblem.jsx';
 
 function CodeEditorPage({ setSelectedProblemId }) {
-  const [code, setCode] = useState('// Write your JavaScript code here...');
   const { problemId } = useParams();
-
+  const [problem, setProblem] = useState(null);
+  const [code, setCode] = useState('Loading...');
+  useEffect(() => {
+    axios.get(`/problems/${problemId}`)
+      .then((res) => {
+        setProblem(res.data);
+        const signature = `function ${res.data.problem_function_name}() {\n  // write your code here\n}`;
+        setCode(signature);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
   useEffect(() => {
     if (setSelectedProblemId) {
       setSelectedProblemId(problemId);
@@ -16,10 +27,8 @@ function CodeEditorPage({ setSelectedProblemId }) {
 
   const submitCode = () => {
     if (window.confirm('Would you like to submit your code?')) {
-      // For testing only
-      const userId = 1;
-      // const problemId = 1;
 
+      const userId = 1;
       axios.post('/codeEditor/submit', {
         userId,
         problemId,
@@ -35,11 +44,12 @@ function CodeEditorPage({ setSelectedProblemId }) {
       console.log('Code submission canceled.');
     }
   };
+
   return (
     <div>
       <div style={containerStyle}>
         <div style={problemStyle}>
-          <SelectedProblem problemId={problemId} />
+          <SelectedProblem problem={problem} />
         </div>
         <div>
           <CodeEditor value={code} onChange={setCode} />

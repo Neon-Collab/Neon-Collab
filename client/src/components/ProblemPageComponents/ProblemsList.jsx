@@ -13,7 +13,8 @@ function ProblemsList({isWeekendView}) {
   };
 
   useEffect(() => {
-    axios.get('/problems')
+    axios
+      .get('/api/problems')
       .then((response) => {
         setProblems(response.data);
       })
@@ -29,7 +30,7 @@ function ProblemsList({isWeekendView}) {
           <h2>{problem.problem_name}</h2>
           <p>{problem.description}</p>
           {selectedProblemId === problem.problem_id && <span>✔️</span>}
-          <button type="button" onClick={() => handleSelectProblem(problem.problem_id)}>
+          <button type='button' onClick={() => handleSelectProblem(problem.problem_id)}>
             Select Problem
           </button>
         </div>

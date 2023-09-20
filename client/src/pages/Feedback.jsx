@@ -11,6 +11,7 @@ function Feedback() {
   const [selectedProblem, setSelectedProblem] = useState('');
   const [chatId, setChatId] = useState(8);
   const [messages, setMessages] = useState([]);
+  const [userId, setUserId] = useState(1);
 
   const setChatsAndSelected = (chatsPromise) => {
     setChats(chatsPromise);
@@ -19,41 +20,47 @@ function Feedback() {
   };
 
   useEffect(() => {
-    axios.get('/feedback', {
-      params: {
-        id: 1, // this will be the current user's id
-      },
-    })
+    axios
+      .get('/api/feedback', {
+        params: {
+          id: 1 // this will be the current user's id
+        }
+      })
       .then((results) => setChatsAndSelected(results.data));
   }, []);
 
   useEffect(() => {
-    axios.get('/submissions', {
-      params: {
-        id: 1, // this will be the current user's id
-      },
-    })
+    axios
+      .get('/api/submissions', {
+        params: {
+          id: 1 // this will be the current user's id
+        }
+      })
       .then((results) => setSubmissions(results.data));
   }, []);
 
   useEffect(() => {
-    axios.get('/messages', {
-      params: {
-        chatId,
-      },
-    })
+    axios
+      .get('/api/messages', {
+        params: {
+          chatId
+        }
+      })
       .then((results) => setMessages(results.data));
   }, [chatId]);
 
-  const handleClick = (problemId) => {
+  const handleClick = (problemId, chatId) => {
     setSelectedProblem(Math.round(problemId));
+    setChatId(Math.round(chatId));
   };
 
+  console.log(chatId);
+
   return (
-    <div className="feedback-container">
+    <div className='feedback-container'>
       <Sidebar chats={chats} selectedProblem={selectedProblem} handleClick={handleClick} />
       <UserSolution submissions={submissions} selectedProblem={selectedProblem} />
-      <ChatViewer messages={messages} />
+      <ChatViewer messages={messages} userId={userId} />
     </div>
   );
 }
