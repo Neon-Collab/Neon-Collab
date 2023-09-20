@@ -1,17 +1,24 @@
 // import React from 'react';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import FeedbackForm from '../components/FeedbackComponents/FeedbackForm.jsx';
 import ChatViewer from '../components/FeedbackComponents/ChatViewer.jsx';
 import Sidebar from '../components/FeedbackComponents/Sidebar.jsx';
 import UserSolution from '../components/FeedbackComponents/UserSolution.jsx';
+import WeekendContext from '../contexts/WeekendContext.jsx';
 
 function Feedback() {
   const [chats, setChats] = useState([]);
   const [submissions, setSubmissions] = useState([]);
   const [selectedProblem, setSelectedProblem] = useState('');
-  const [chatId, setChatId] = useState(8);
+  const [chatId, setChatId] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState(1); // this will be set to current user's id
+  const [problems, setProblems] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const [modalVisibility, setModalVisibility] = useState(true);
+
+  const { weekend } = useContext(WeekendContext);
 
   const setChatsAndSelected = (chatsPromise) => {
     setChats(chatsPromise);
@@ -47,20 +54,41 @@ function Feedback() {
         }
       })
       .then((results) => setMessages(results.data));
-  }, [chatId]);
+  }, [chatId, loader]);
+
+  useEffect(() => {
+    axios
+      .get('/api/problems')
+      .then((results) => {
+        const problemObj = {};
+        results.data.forEach((obj) => {
+          problemObj[obj.problem_id] = obj.problem_name;
+        });
+        return problemObj;
+      })
+      .then((problemObj) => setProblems(problemObj));
+  }, []);
 
   const handleClick = (problemId, chatId) => {
     setSelectedProblem(Math.round(problemId));
     setChatId(Math.round(chatId));
   };
 
-  console.log(chatId);
+  const closeModal = () => {
+    setModalVisibility(false);
+  };
 
   return (
     <div className='feedback-container'>
-      <Sidebar chats={chats} selectedProblem={selectedProblem} handleClick={handleClick} />
+      {weekend && modalVisibility && <FeedbackForm closeModal={closeModal} />}
+      <Sidebar
+        chats={chats}
+        selectedProblem={selectedProblem}
+        handleClick={handleClick}
+        problems={problems}
+      />
       <UserSolution submissions={submissions} selectedProblem={selectedProblem} />
-      <ChatViewer messages={messages} userId={userId} />
+      <ChatViewer messages={messages} userId={userId} chatId={chatId} setLoader={setLoader} />
     </div>
   );
 }

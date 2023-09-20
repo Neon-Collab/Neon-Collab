@@ -10,3 +10,9 @@
   border: solid 1px red;
   width: 49%;
 }
+
+.account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}

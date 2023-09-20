@@ -9,38 +9,35 @@ import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import Feedback from './pages/Feedback.jsx';
 import ProblemsPage from './pages/ProblemsPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
-
-// import { addUserData } from '../../db/exampleAddUserData.js';
-// import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
+import WeekendContext from "./contexts/WeekendContext.jsx";
 
 function App() {
   const navigate = useNavigate();
+  const [weekend, setWeekend] = useState(false);
   const [account, setAccount] = useState({
     loggedIn: false,
   });
-  // useEffect(() => {
-  //   addUserData();
-  //   retrieveUserData();
-  // }, []);
 
   const contextValue = useMemo(
     () => ({
       account,
       setAccount,
     }),
-    [
-      account,
-      setAccount,
-    ],
+    [account, setAccount]
   );
-
+  
+  const toggleWeekend = () => {
+    setWeekend((prev) => !prev);
+  };
+  
   return (
     <div>
       <AppContext.Provider value={contextValue}>
-        { account.loggedIn && <Navbar /> }
-        { !account.loggedIn && <h1>Hello, Neon-Collab!</h1> }
-        { !account.loggedIn && <LoginPage />}
-        <div>
+        <WeekendContext.Provider value={{ weekend, toggleWeekend }}>
+          {account.loggedIn && <Navbar />}
+          {!account.loggedIn && <h1>Hello, Neon-Collab!</h1>}
+          {!account.loggedIn && <LoginPage />}
+          <div>
           <Routes>
             <Route
               path="/problemspage"
@@ -75,7 +72,8 @@ function App() {
               )}
             />
           </Routes>
-        </div>
+          </div>
+        </WeekendContext.Provider>
       </AppContext.Provider>
     </div>
   );

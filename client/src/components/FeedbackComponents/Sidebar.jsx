@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Sidebar({ chats, selectedProblem, handleClick }) {
+function Sidebar({ chats, selectedProblem, handleClick, problems }) {
   return (
     <div className='sidebar container'>
       <h1>Messages</h1>
@@ -8,15 +8,16 @@ function Sidebar({ chats, selectedProblem, handleClick }) {
         chats.map((chat) =>
           chat.problem_id === selectedProblem ? (
             <div id={chat.chat_id} className='chat selected'>
-              {chat.problem_id}
+              {problems[chat.problem_id]}
             </div>
           ) : (
             <div
               id={chat.chat_id}
               className='chat'
-              onClick={(e) => handleClick(e.target.textContent, e.target.id)}
+              title={chat.problem_id}
+              onClick={(e) => handleClick(e.target.title, e.target.id)}
             >
-              {chat.problem_id}
+              {problems[chat.problem_id]}
             </div>
           )
         )}
