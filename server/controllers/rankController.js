@@ -12,4 +12,13 @@ module.exports = {
         res.status(200).send(response);
       });
   },
+  getAUserRank: (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    models.rank.getOneUserRank(id)
+      .then((response) => {
+        console.log(response.rank);
+        res.status(200).send(response);
+      });
+  },
 };

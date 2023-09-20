@@ -10,22 +10,23 @@ const router = express.Router();
 
 // Users
 router.get('/users', controller.users.get);
-router.get('/users/:id', controller.users.getOne);
+router.get('/users/search/id:', controller.users.getOne);
 
 // Problems
 router.get('/problems', controller.problems.get);
-router.get('/problems/:id', controller.problems.getOne);
+router.get('/problems/search/id:', controller.problems.getOne);
 
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 module.exports = router;
 
-
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
 
-// Ranking
+// Overall Rankings
 router.get('/rank', controller.rank.getRanks);
+router.get('/rank/search/:id', controller.rank.getAUserRank);
+
 router.get('/submissions', controller.feedback.getSubmissions);
 router.get('/messages', controller.feedback.getMessages);
 
