@@ -34,6 +34,7 @@ function App() {
   );
   // add states and their setter functions that you want shared into...
   // the use memo and dependency array
+  const [selectedProblemId, setSelectedProblemId] = useState(null);
 
   return (
     <div>

@@ -20,18 +20,17 @@ module.exports = {
   },
   getProblemsWithScores: async () => {
     const query = `
-      SELECT
-        problems.problem_id,
-        problems.problem_name,
-        problems.description,
-        problems.difficulty,
-        problems.problem_code,
-        problems.problem_number,
-        COALESCE(AVG(submission.score), 0) AS averageScore
-      FROM problems
-      LEFT JOIN submission ON problems.problem_id = submission.problem_id
-      GROUP BY problems.problem_id
-      ORDER BY problems.problem_number;
+    SELECT
+    p.problem_id,
+    p.problem_name,
+    p.description,
+    AVG(s.score) as averageScore
+    FROM
+    problems p
+    LEFT JOIN
+    submission s ON p.problem_id = s.problem_id
+    GROUP BY
+    p.problem_id, p.problem_name, p.description
     `;
 
     const results = await db.query(query);

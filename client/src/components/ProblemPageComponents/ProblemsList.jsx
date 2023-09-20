@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function ProblemsList() {
+function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
   const [problems, setProblems] = useState([]);
-  const [selectedProblemId, setSelectedProblemId] = useState(null);
+  // const [selectedProblemId, setSelectedProblemId] = useState(null);
   const navigate = useNavigate();
 
   const handleSelectProblem = (problemId) => {
     setSelectedProblemId(problemId);
+    // save the problem_id to local storage
+    localStorage.setItem('selectedProblemId', problemId); // Save to local storage
     navigate(`/editor/${problemId}`);
-  };
+};
+
 
   useEffect(() => {
     axios

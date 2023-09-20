@@ -12,6 +12,11 @@ module.exports = {
     const result = await pool.query(query, [user_id]);
     return result;
   },
+  getSubmissionsForProblem: async (problemId) => {
+    const query = 'SELECT * from submission WHERE problem_id = $1';
+    const result = await pool.query(query, [problemId]);
+    return result;
+  },
   getMessages: async (chatId) => {
     const query = 'SELECT * from messages WHERE chat_id = $1';
     const result = await pool.query(query, [chatId]);
