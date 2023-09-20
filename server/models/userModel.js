@@ -26,6 +26,7 @@ module.exports = {
       console.error(err);
       console.log(err.message);
     }
+  },
   getUserCompleted: async (id) => {
     const text = 'SELECT * FROM submission WHERE user_id = $1 AND completed = true';
     const values = [id];

@@ -42,7 +42,8 @@ module.exports = {
       })
       .catch((err) => {
         console.error(err);
-
+      })
+  },
   getCompleted: (req, res) => {
     const { id } = req.params;
     models.users.getUserCompleted(id)
@@ -54,7 +55,7 @@ module.exports = {
         res.sendStatus(500);
       });
   },
-    
+
   getAttempts: (req, res) => {
     const { id } = req.params;
     models.users.getUserAttempts(id)
