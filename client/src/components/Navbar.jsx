@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { logout } from '../../../server/controllers/firebaseController.js';
 import AppContext from '../contexts/AppContext.jsx';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../server/firebase';
 
 // added logout button accessible in the navbar, feel free to style/change as needed
@@ -23,7 +23,7 @@ function Navbar() {
     }
     if (!user) {
       setAccount({
-        loggedIn: false,
+        loggedIn: false
       });
       navigate('/');
     }
@@ -32,15 +32,22 @@ function Navbar() {
   return (
     <nav>
       <div>
-        <Link className="logo" to={account.loggedIn ? "/problemspage" : "/"}>neonCollab</Link>
-        <Link className="link" to="/problemspage">Problems</Link>
-        <Link className="link" to="/editor/:problemId">Editor</Link>
-        <Link className="link" to="/feedback">Feedback</Link>
+        <Link className='logo' to={account.loggedIn ? '/problemspage' : '/'}>
+          neonCollab
+        </Link>
+        <Link className='link' to='/problemspage'>
+          Problems
+        </Link>
+        <Link className='link' to='/feedback'>
+          Feedback
+        </Link>
       </div>
-      <input type="button" value="Sign Out" onClick={logout} />
-      <Link to="/profile"><img className="profile-pic" src="https://i.stack.imgur.com/frlIf.png" alt="profile pic" /></Link>
+      <input type='button' value='Sign Out' onClick={logout} />
+      <Link to='/profile'>
+        <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' />
+      </Link>
     </nav>
   );
 }
 
-  export default Navbar;
+export default Navbar;

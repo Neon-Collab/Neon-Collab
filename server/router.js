@@ -20,13 +20,13 @@ router.get('/problems/:id', controller.problems.getOne);
 router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 module.exports = router;
 
-
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
+router.get('/submissions', controller.feedback.getSubmissions);
+router.get('/messages', controller.feedback.getMessages);
+router.post('/messages', controller.feedback.postMessage);
 
 // Ranking
 router.get('/rank', controller.rank.getRanks);
-router.get('/submissions', controller.feedback.getSubmissions);
-router.get('/messages', controller.feedback.getMessages);
 
 module.exports = router;
