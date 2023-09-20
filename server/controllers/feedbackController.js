@@ -21,4 +21,9 @@ module.exports = {
     const results = await feedbackModel.getMessages(chatId);
     res.send(results.rows).status(200);
   },
+  postMessage: async (req, res) => {
+    const { chatId, userId, message } = req.body;
+    await feedbackModel.postMessage(chatId, userId, message);
+    res.sendStatus(201);
+  },
 };
