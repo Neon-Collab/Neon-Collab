@@ -12,4 +12,11 @@ module.exports = {
         res.status(200).send(response);
       });
   },
+  getAUserRank: (req, res) => {
+    const { id } = req.params;
+    models.rank.getOneUserRank(id)
+      .then((response) => {
+        res.status(200).send(response);
+      });
+  },
 };

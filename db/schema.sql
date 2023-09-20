@@ -5,7 +5,7 @@
 
 
 DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users (
+CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(60) NOT NULL,
     first_name VARCHAR(30),
@@ -16,7 +16,7 @@ CREATE TABLE users (
 );
 
 DROP TABLE IF EXISTS problems CASCADE;
-CREATE TABLE problems (
+CREATE TABLE problems(
     problem_id SERIAL PRIMARY KEY,
     problem_name VARCHAR(255) NOT NULL,
     -- will change this in the next pr
@@ -27,7 +27,7 @@ CREATE TABLE problems (
 );
 
 DROP TABLE IF EXISTS chat CASCADE;
-CREATE TABLE chat (
+CREATE TABLE chat(
     chat_id SERIAL PRIMARY KEY,
     problem_id INT REFERENCES problems(problem_id),
     solver_id INT REFERENCES users(user_id),
@@ -35,7 +35,7 @@ CREATE TABLE chat (
 );
 
 DROP TABLE IF EXISTS message CASCADE;
-CREATE TABLE messages (
+CREATE TABLE messages(
     chat_id INT REFERENCES chat(chat_id),
     user_id INT REFERENCES users(user_id),
     message VARCHAR(1000),
@@ -43,7 +43,7 @@ CREATE TABLE messages (
 );
 
 DROP TABLE IF EXISTS tests CASCADE;
-CREATE TABLE tests (
+CREATE TABLE tests(
     test_id SERIAL PRIMARY KEY,
     problem_id INT REFERENCES problems(problem_id),
     test_case_input TEXT NOT NULL,
@@ -51,18 +51,19 @@ CREATE TABLE tests (
 );
 
 DROP TABLE IF EXISTS submission CASCADE;
-CREATE TABLE submission (
+CREATE TABLE submission(
     user_id INT REFERENCES users(user_id),
     problem_id INT REFERENCES problems(problem_id),
     code TEXT,
     completed BOOLEAN NOT NULL DEFAULT FALSE,
     submission_date DATE DEFAULT CURRENT_DATE,
     score FLOAT,
+    feedback BOOLEAN,
     PRIMARY KEY (user_id, problem_id)
 );
 
 DROP TABLE IF EXISTS rankings CASCADE;
-CREATE TABLE rankings (
+CREATE TABLE rankings(
     user_id INT REFERENCES users(user_id),
     total_score FLOAT,
     problems_amt INT,
