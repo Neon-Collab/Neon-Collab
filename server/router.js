@@ -11,6 +11,8 @@ const router = express.Router();
 // Users
 router.get('/users', controller.users.get);
 router.get('/users/search/id:', controller.users.getOne);
+router.get('/submissions/user/:id', controller.users.getCompleted);
+router.get('/submissions_all/user/:id', controller.users.getAttempts);
 
 // Problems
 router.get('/problems', controller.problems.get);

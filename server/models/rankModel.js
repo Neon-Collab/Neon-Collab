@@ -30,14 +30,13 @@ module.exports = {
         console.log(error);
       }
     }
-    console.log(rankedUsers);
+    // console.log(rankedUsers);
     return rankedUsers;
   },
   getOneUserRank: async (id) => {
     const text = 'SELECT rank from rankings WHERE user_id = $1';
     const values = [id];
     const results = await db.query(text, values);
-    //console.log(results.rows[0])
     return results.rows[0];
   },
 };

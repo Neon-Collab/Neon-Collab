@@ -17,4 +17,16 @@ module.exports = {
     const results = await db.query(text, values);
     return results.rows;
   },
+  getUserCompleted: async (id) => {
+    const text = 'SELECT * FROM submission WHERE user_id = $1 AND completed = true';
+    const values = [id];
+    const results = await db.query(text, values);
+    return results.rows;
+  },
+  getUserAttempts: async (id) => {
+    const text = 'SELECT * FROM submission WHERE user_id = $1';
+    const values = [id];
+    const results = await db.query(text, values);
+    return results.rows;
+  },
 };
