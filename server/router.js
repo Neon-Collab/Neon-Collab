@@ -29,6 +29,9 @@ router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
+router.get('/submissions', controller.feedback.getSubmissions);
+router.get('/messages', controller.feedback.getMessages);
+router.post('/messages', controller.feedback.postMessage);
 
 // Overall Rankings
 router.get('/rank', controller.rank.getRanks);
@@ -36,5 +39,6 @@ router.get('/rank/search/:id', controller.rank.getAUserRank);
 
 router.get('/submissions', controller.feedback.getSubmissions);
 router.get('/messages', controller.feedback.getMessages);
+
 
 module.exports = router;
