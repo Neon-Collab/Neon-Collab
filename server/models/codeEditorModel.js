@@ -45,4 +45,16 @@ module.exports = {
   `;
     await pool.query(text, [userId, problemId, status]);
   },
+  hasUserCompleted: async (userId, problemId) => {
+    const text = `
+      SELECT completed
+      FROM submission
+      WHERE user_id = $1 AND problem_id = $2;
+    `
+    const result = await pool.query(text, [userId, problemId]);
+    if (result.rows.length > 0) {
+      return result.rows[0].completed;
+    }
+    return false;
+  },
 };
