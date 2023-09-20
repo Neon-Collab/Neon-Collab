@@ -9,10 +9,10 @@ const router = express.Router();
 */
 
 // Login
-router.get('/api/login', controller.login.logInWithEmailAndPassword);
-router.post('/api/signup', controller.login.registerWithEmailAndPassword);
-router.get('/api/resetPassword', controller.login.sendPasswordReset);
-router.get('/api/logout', controller.login.logout);
+router.get('/login', controller.login.logInWithEmailAndPassword);
+router.post('/signup', controller.login.registerWithEmailAndPassword);
+router.get('/resetPassword', controller.login.sendPasswordReset);
+router.get('/logout', controller.login.logout);
 
 // Users
 router.get('/users', controller.users.get);
