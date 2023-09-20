@@ -41,9 +41,9 @@ describe('ProblemsList', () => {
     const secondProblem = await screen.findByText('Second Problem');
     const secondProblemDescription = await screen.findByText('This is the second problem description.');
 
-    expect(firstProblem).toBeInTheDocument();
-    expect(firstProblemDescription).toBeInTheDocument();
-    expect(secondProblem).toBeInTheDocument();
-    expect(secondProblemDescription).toBeInTheDocument();
+    expect(firstProblem).toBeTruthy();
+    expect(firstProblemDescription).toBeTruthy();
+    expect(secondProblem).toBeTruthy();
+    expect(secondProblemDescription).toBeTruthy();
   });
 });

@@ -34,6 +34,6 @@ describe('Ranking Component', () => {
     const { getByText } = render(<Ranking problemId={1} />);
 
     await waitFor(() => getByText('User2 - 4'));
-    expect(getByText('User2 - 4')).toBeInTheDocument();
+    expect(getByText('User2 - 4')).toBeTruthy();
   });
 });

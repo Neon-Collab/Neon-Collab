@@ -44,6 +44,9 @@ function Navbar() {
         <Link className='link' to='/problemspage'>
           Problems
         </Link>
+        {/* <Link className='link' to='/editor'>
+          Editor
+        </Link> */}
         <Link className='link' to='/feedback'>
           Feedback
         </Link>
