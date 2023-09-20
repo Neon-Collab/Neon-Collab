@@ -1,3 +1,4 @@
+exports.login = require('./firebaseController');
 exports.users = require('./userController');
 exports.problems = require('./problemController');
 exports.codeEditor = require('./codeEditorController.js');
