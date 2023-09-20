@@ -35,11 +35,7 @@ export default function SignupForm() {
       setAccount({
         ...account,
         loggedIn: true,
-        firstname,
-        lastname,
         username,
-        email,
-        skill,
       });
       // TODO: submit/save account info to postgres DB here
       navigate('/problemspage');
