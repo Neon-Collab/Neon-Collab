@@ -8,13 +8,19 @@ const { rankUsers, getUserScore } = require('../../data/ranking.js');
 
 module.exports = {
   getUserRanks: async () => {
-    // Begin query
+    const text = `SELECT user_id, json_strip_nulls(json_agg(json_build_object('id', problem_id, 'difficulty', difficulty, 'score', score, 'feedback', feedback))) as problems FROM submission RIGHT JOIN problems USING (problem_id) WHERE completed = TRUE AND AGE(current_date, submission_DATE) <= interval '21 days' GROUP BY user_id;
+    `;
+    const results = await db.query(text);
 
-    // Get all submissions, group by user id.
-    // Need all submissions of a user within a 3 week period from today
-
-    // iterate over array of submissions and calculate score (getUserScore)
-
-    // take new array of objects that includes score and invoke rankUsers
+    const userSubmissions = [];
+    results.rows.map((element) => {
+      const sub = {};
+      sub.user_id = element.user_id;
+      sub.score = getUserScore(element);
+      userSubmissions.push(sub);
+    });
+    const rankedUsers = rankUsers(userSubmissions);
+    console.log(rankedUsers);
+    return rankedUsers;
   },
 };
