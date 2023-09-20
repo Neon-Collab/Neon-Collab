@@ -70,7 +70,6 @@ describe('Login Page', () => {
         password: '12345678',
         verifyPassword: 'asdfghjk'
       });
-      //const { account, setAccount } = useContext(AppContext);
       return (
         <AppContext.Provider
           value={{account, setAccount}}
