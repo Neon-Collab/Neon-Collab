@@ -68,4 +68,6 @@ CREATE TABLE rankings (
     problems_amt INT,
     rank INT,
     PRIMARY KEY (user_id)
-)
+);
+
+
