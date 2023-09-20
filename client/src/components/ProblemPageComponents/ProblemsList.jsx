@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function ProblemsList({isWeekendView}) {
+function ProblemsList() {
   const [problems, setProblems] = useState([]);
   const [selectedProblemId, setSelectedProblemId] = useState(null);
   const navigate = useNavigate();
