@@ -25,19 +25,27 @@ export default function SignupForm() {
       return;
     }
     try {
-      await axios.post('/api/signup', {
+      const firebaseUser = {
         firstname,
         lastname,
         username,
         email,
         password,
-      });
+      };
+      await axios.post('/api/signup', firebaseUser);
       setAccount({
         ...account,
         loggedIn: true,
         username,
       });
-      // TODO: submit/save account info to postgres DB here
+      const postgresUser = {
+        firstname,
+        lastname,
+        username,
+        email,
+        skill,
+      };
+      await axios.post('/api/addUser', postgresUser);
       navigate('/problemspage');
     } catch (err) {
       alert(err.response.data);
