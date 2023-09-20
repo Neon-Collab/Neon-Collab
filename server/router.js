@@ -18,7 +18,6 @@ router.get('/problems/:id', controller.problems.getOne);
 
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.addCode);
-module.exports = router;
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
@@ -27,3 +26,5 @@ router.get('/feedback', controller.feedback.getChats);
 router.get('/rank', controller.rank.getRanks);
 router.get('/submissions', controller.feedback.getSubmissions);
 router.get('/messages', controller.feedback.getMessages);
+
+module.exports = router;
