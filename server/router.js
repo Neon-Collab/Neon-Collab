@@ -8,6 +8,12 @@ const router = express.Router();
   Basic route setup
 */
 
+// Login
+router.get('/login', controller.login.logInWithEmailAndPassword);
+router.post('/signup', controller.login.registerWithEmailAndPassword);
+router.get('/resetPassword', controller.login.sendPasswordReset);
+router.get('/logout', controller.login.logout);
+
 // Users
 router.get('/users', controller.users.get);
 router.get('/users/search/id:', controller.users.getOne);
@@ -20,7 +26,6 @@ router.get('/problems/search/id:', controller.problems.getOne);
 
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.submitCode);
-module.exports = router;
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);

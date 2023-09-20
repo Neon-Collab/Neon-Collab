@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import CodeEditor from '../components/CodeEditorComponents/CodeEditor.jsx';
 import SelectedProblem from '../components/CodeEditorComponents/SelectedProblem.jsx';
+import CodeSubmit from '../components/CodeEditorComponents/CodeSubmit.jsx';
 
-function CodeEditorPage({ setSelectedProblemId }) {
+function CodeEditorPage() {
   const { problemId } = useParams();
   const [problem, setProblem] = useState(null);
   const [code, setCode] = useState('Loading...');
+  // Temporarily for testing
+  const userId = 1;
   useEffect(() => {
-    axios.get(`/problems/${problemId}`)
+    axios.get(`/api/problems/${problemId}`)
       .then((res) => {
         setProblem(res.data);
         const signature = `function ${res.data.problem_function_name}() {\n  // write your code here\n}`;
@@ -19,31 +22,6 @@ function CodeEditorPage({ setSelectedProblemId }) {
         console.error(err);
       });
   }, []);
-  useEffect(() => {
-    if (setSelectedProblemId) {
-      setSelectedProblemId(problemId);
-    }
-  }, [problemId, setSelectedProblemId]);
-
-  const submitCode = () => {
-    if (window.confirm('Would you like to submit your code?')) {
-
-      const userId = 1;
-      axios.post('/codeEditor/submit', {
-        userId,
-        problemId,
-        code,
-      })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    } else {
-      console.log('Code submission canceled.');
-    }
-  };
 
   return (
     <div>
@@ -53,7 +31,7 @@ function CodeEditorPage({ setSelectedProblemId }) {
         </div>
         <div>
           <CodeEditor value={code} onChange={setCode} />
-          <button type="button" onClick={submitCode}>Submit</button>
+          <CodeSubmit code={code} problemId={problemId} userId={userId} />
         </div>
       </div>
     </div>
