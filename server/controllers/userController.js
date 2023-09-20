@@ -17,8 +17,30 @@ module.exports = {
       });
   },
   getOne: (req, res) => {
-    const { id } = req.params; // Gets user id from query params
+    const { id } = req.params;
     models.users.getOneUser(id)
+      .then((response) => {
+        res.status(200).send(response);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+  getCompleted: (req, res) => {
+    const { id } = req.params;
+    models.users.getUserCompleted(id)
+      .then((response) => {
+        res.status(200).send(response);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+  getAttempts: (req, res) => {
+    const { id } = req.params;
+    models.users.getUserAttempts(id)
       .then((response) => {
         res.status(200).send(response);
       })
