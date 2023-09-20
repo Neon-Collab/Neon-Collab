@@ -17,7 +17,6 @@ function ChatViewer({ messages, userId, chatId, setLoader }) {
   const handleChange = (value) => {
     setMessage(value);
   };
-  console.log(messages);
 
   return (
     <div className='chat-viewer container'>
