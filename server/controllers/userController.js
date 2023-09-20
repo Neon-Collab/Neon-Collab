@@ -27,6 +27,23 @@ module.exports = {
         res.sendStatus(500);
       });
   },
+
+  addUser: (req, res) => {
+    const {
+      firstname,
+      lastname,
+      username,
+      email,
+      skill,
+    } = req.body;
+    models.users.addOneUser([firstname, lastname, username, email, skill])
+      .then(() => {
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  },
   getCompleted: (req, res) => {
     const { id } = req.params;
     models.users.getUserCompleted(id)
@@ -38,6 +55,7 @@ module.exports = {
         res.sendStatus(500);
       });
   },
+
   getAttempts: (req, res) => {
     const { id } = req.params;
     models.users.getUserAttempts(id)

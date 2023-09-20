@@ -17,6 +17,16 @@ module.exports = {
     const results = await db.query(text, values);
     return results.rows;
   },
+  addOneUser: async (userData) => {
+    const insert = 'INSERT INTO users(first_name, last_name, username, email, skill_level) VALUES ($1, $2, $3, $4, $5)';
+    try {
+      await db.query(insert, userData);
+      console.log('user posted to postgres');
+    } catch (err) {
+      console.error(err);
+      console.log(err.message);
+    }
+  },
   getUserCompleted: async (id) => {
     const text = 'SELECT * FROM submission WHERE user_id = $1 AND completed = true';
     const values = [id];

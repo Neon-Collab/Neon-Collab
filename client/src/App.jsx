@@ -10,18 +10,11 @@ import Feedback from "./pages/Feedback.jsx";
 import ProblemsPage from "./pages/ProblemsPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 
-// import { addUserData } from '../../db/exampleAddUserData.js';
-// import { retrieveUserData } from '../../db/exampleRetrieveUserData.js';
-
 function App() {
   const navigate = useNavigate();
   const [account, setAccount] = useState({
     loggedIn: false,
   });
-  // useEffect(() => {
-  //   addUserData();
-  //   retrieveUserData();
-  // }, []);
 
   const contextValue = useMemo(
     () => ({
@@ -30,8 +23,7 @@ function App() {
     }),
     [account, setAccount]
   );
-  // add states and their setter functions that you want shared into...
-  // the use memo and dependency array
+
   const [selectedProblemId, setSelectedProblemId] = useState(null);
   const [weekend, setWeekend] = useState(false);
   const toggleWeekend = () => {
