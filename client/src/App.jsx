@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
+import ProtectedRoute from './components/LoginComponents/ProtectedRoute.jsx';
 // import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import AppContext from './contexts/AppContext.jsx';
 import Navbar from './components/Navbar.jsx';
-import { Routes, Route, useNavigate } from 'react-router-dom';
 import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import Feedback from './pages/Feedback.jsx';
 import ProblemsPage from './pages/ProblemsPage.jsx';
@@ -32,8 +33,6 @@ function App() {
       setAccount,
     ],
   );
-  // add states and their setter functions that you want shared into...
-  // the use memo and dependency array
 
   return (
     <div>
@@ -43,10 +42,38 @@ function App() {
         { !account.loggedIn && <LoginPage />}
         <div>
           <Routes>
-            <Route path="/problemspage" element={<ProblemsPage />} />
-            <Route path="/editor/:problemId" element={<CodeEditorPage />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/problemspage"
+              element={(
+                <ProtectedRoute loggedIn={account.loggedIn}>
+                  <ProblemsPage />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/editor/:problemId"
+              element={(
+                <ProtectedRoute loggedIn={account.loggedIn}>
+                  <CodeEditorPage />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/feedback"
+              element={(
+                <ProtectedRoute loggedIn={account.loggedIn}>
+                  <Feedback />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/profile"
+              element={(
+                <ProtectedRoute loggedIn={account.loggedIn}>
+                  <ProfilePage />
+                </ProtectedRoute>
+              )}
+            />
           </Routes>
         </div>
       </AppContext.Provider>
