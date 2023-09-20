@@ -12,7 +12,7 @@ export default function ProblemHistory() {
       });
   }, []);
 
-  console.log(history)
+  // console.log(history)
 
   return (
     <div className="component-container">
