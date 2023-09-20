@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 function CodeSubmit({ userId, problemId, code }) {
   const submitCode = () => {
@@ -12,15 +13,22 @@ function CodeSubmit({ userId, problemId, code }) {
           console.log(res.data);
         })
         .catch((err) => {
-          console.error(err);
+          if (err.response.status === 409) {
+            alert('You have already submitted the solution code for this problem.');
+          } else {
+            console.error(err);
+          }
         });
     } else {
       console.log('Code submission canceled.');
     }
   };
 
-
-  return <button type="button" onClick={submitCode}>Submit</button>;
+  return (
+    <div>
+      <button type="button" onClick={submitCode}>Submit</button>
+    </div>
+  );
 }
 
 export default CodeSubmit;

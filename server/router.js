@@ -26,6 +26,7 @@ router.get('/problems/search/id:', controller.problems.getOne);
 
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.submitCode);
+router.post('/codeEditor/runCode', controller.codeEditor.runCode);
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
