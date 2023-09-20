@@ -12,7 +12,7 @@ module.exports = {
     res.send(results.rows).status(200);
   },
   getSubmissionsForProblem: async (req, res) => {
-    const problemId = req.params.problemId;
+    const { problemId } = req.params;
     const results = await feedbackModel.getSubmissionsForProblem(problemId);
     res.send(results.rows).status(200);
 },
