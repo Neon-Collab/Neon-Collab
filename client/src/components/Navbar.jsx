@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { logout } from '../../../server/controllers/firebaseController.js';
 import AppContext from '../contexts/AppContext.jsx';
+import WeekendContext from '../contexts/WeekendContext.jsx';
 import { auth } from '../../../server/firebase';
 
 // added logout button accessible in the navbar, feel free to style/change as needed
@@ -11,7 +12,7 @@ import { auth } from '../../../server/firebase';
 function Navbar() {
   // const { account, setAccount } = useContext(AppContext);
   const context = useContext(AppContext);
-  console.log(context);
+  const { weekend, toggleWeekend } = useContext(WeekendContext);
 
   const { account, setAccount } = context;
   const [user, loading, error] = useAuthState(auth);
@@ -43,6 +44,9 @@ function Navbar() {
         </Link>
       </div>
       <input type='button' value='Sign Out' onClick={logout} />
+      <button type='button' onClick={() => toggleWeekend()}>
+        Change Weekday
+      </button>
       <Link to='/profile'>
         <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' />
       </Link>

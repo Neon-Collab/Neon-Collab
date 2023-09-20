@@ -1,10 +1,11 @@
 // import React from 'react';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import FeedbackForm from '../components/FeedbackComponents/FeedbackForm.jsx';
 import ChatViewer from '../components/FeedbackComponents/ChatViewer.jsx';
 import Sidebar from '../components/FeedbackComponents/Sidebar.jsx';
 import UserSolution from '../components/FeedbackComponents/UserSolution.jsx';
+import WeekendContext from '../contexts/WeekendContext.jsx';
 
 function Feedback() {
   const [chats, setChats] = useState([]);
@@ -13,9 +14,11 @@ function Feedback() {
   const [chatId, setChatId] = useState(0);
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState(1); // this will be set to current user's id
-  const [modalVisibility, setModalVisibility] = useState(false);
   const [problems, setProblems] = useState([]);
   const [loader, setLoader] = useState(true);
+  const [modalVisibility, setModalVisibility] = useState(true);
+
+  const { weekend } = useContext(WeekendContext);
 
   const setChatsAndSelected = (chatsPromise) => {
     setChats(chatsPromise);
@@ -77,7 +80,7 @@ function Feedback() {
 
   return (
     <div className='feedback-container'>
-      {modalVisibility && <FeedbackForm closeModal={closeModal} />}
+      {weekend && modalVisibility && <FeedbackForm closeModal={closeModal} />}
       <Sidebar
         chats={chats}
         selectedProblem={selectedProblem}
