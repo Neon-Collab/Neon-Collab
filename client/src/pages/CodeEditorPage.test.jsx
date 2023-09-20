@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 import axios from 'axios';
-import CodeEditorPage from '../../pages/CodeEditorPage.jsx';
+import CodeEditorPage from './CodeEditorPage.jsx';
 
 jest.mock('axios');
 axios.get.mockResolvedValue({
@@ -16,7 +16,7 @@ axios.get.mockResolvedValue({
   },
 });
 
-describe('SelectedProblem Component', () => {
+describe('CodeEditorPage', () => {
   test('Getting problem and renders the data', async () => {
     render(<CodeEditorPage />);
 
@@ -27,4 +27,4 @@ describe('SelectedProblem Component', () => {
     expect(screen.getByText('CoolCool')).toBeDefined();
     expect(screen.getByText('Hell')).toBeDefined();
   });
-});
+})

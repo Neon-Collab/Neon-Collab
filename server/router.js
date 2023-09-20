@@ -7,6 +7,7 @@ const router = express.Router();
 /*
   Basic route setup
 */
+
 // Login
 router.get('/api/login', controller.login.logInWithEmailAndPassword);
 router.post('/api/signup', controller.login.registerWithEmailAndPassword);
@@ -22,10 +23,13 @@ router.get('/problems', controller.problems.get);
 router.get('/problems/:id', controller.problems.getOne);
 
 // Submission/Code editor
-router.post('/codeEditor/submit', controller.codeEditor.addCode);
+router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 
 // Feedback
 router.get('/feedback', controller.feedback.getChats);
+
+// Ranking
+router.get('/rank', controller.rank.getRanks);
 router.get('/submissions', controller.feedback.getSubmissions);
 router.get('/messages', controller.feedback.getMessages);
 
