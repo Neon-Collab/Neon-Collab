@@ -6,7 +6,7 @@ export default function AccountInfo({ user }) {
   const { account, setAccount } = useContext(AppContext);
 
   return (
-    <div className="component-container">
+    <div className="common-container component-container">
       <h1>Account Information</h1>
       <div className="account-container">
         {user ? (

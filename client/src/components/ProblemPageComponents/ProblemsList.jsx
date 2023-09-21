@@ -34,7 +34,7 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
   }, []);
 
   return (
-    <div>
+    <div className="common-container">
       {problems.slice(0, 4).map((problem) => (
         <div key={problem.problem_id} style={{ marginBottom: '20px' }}>
           <h2>{problem.problem_name}</h2>

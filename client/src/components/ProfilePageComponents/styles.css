@@ -2,17 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
 }
 
 .component-container {
   /* border: solid 1px red; */
-  width: 49%;
+  width: 40%;
 }
 
 .account-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: space-between;
+  align-items: space-between; */
 }

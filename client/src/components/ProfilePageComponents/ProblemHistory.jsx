@@ -15,7 +15,7 @@ export default function ProblemHistory({ id }) {
   // console.log(history)
 
   return (
-    <div className="component-container">
+    <div className="common-container component-container">
       <h1>Problem History</h1>
       <div className="history-container">
         {history ? (

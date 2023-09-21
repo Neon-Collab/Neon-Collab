@@ -66,8 +66,8 @@ export default function SignupForm() {
         onChange={(e) => setSkill(e.target.value)}
         required
       >
-        <option value="">Select your level of experience with JavaScript...</option>
-        <option value="Beginner">Beginer</option>
+        <option value="">Level of experience with JavaScript...</option>
+        <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
         <option value="Advanced">Advanced</option>
         <option value="Expert">Expert</option>

@@ -52,13 +52,15 @@ function Navbar() {
           Feedback
         </Link>
       </div>
-      <input type='button' value='Sign Out' onClick={logout} />
       <button type='button' onClick={() => toggleWeekend()}>
         Change Weekday
       </button>
-      <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
-        <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' activeClassname='active-link'/>
-      </Link>
+      <div className="profile-logout">
+        <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
+          <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' activeClassname='active-link'/>
+        </Link>
+        <input type='button' value='Sign Out' onClick={logout} />
+      </div>
     </nav>
   );
 }
