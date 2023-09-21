@@ -16,7 +16,7 @@ nav {
   height: 132px;
   padding: 0 40px;
   background-color: #000324;
-  box-shadow: inset 0px 0px 70px 2px rgba(255, 0, 255, 0.25);
+  box-shadow: inset 0px 0px 70px 2px #000643;
 }
 
 .routes {
@@ -73,13 +73,14 @@ button:hover {
 }
 
 [type=button]{
-  background-color: rgba(0, 255, 255, 0.75);
-  border-width: 0;
+  background-color: cyan;
+  box-shadow: inset 0px 0px 15px 0px #000324;
+  border: 1px solid black;
   justify-content: center;
-  color: black;
-  border-radius: 5px;
+  color: #000324;
+  border-radius: 15px;
   margin-top: 10px;
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 16px;
 }
 
