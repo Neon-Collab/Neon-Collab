@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
   const [problems, setProblems] = useState([]);
-  // const [selectedProblemId, setSelectedProblemId] = useState(null);
+
   const navigate = useNavigate();
 
   const handleSelectProblem = (problemId) => {
     setSelectedProblemId(problemId);
-    // save the problem_id to local storage
     localStorage.setItem('selectedProblemId', problemId);
     navigate(`/editor/${problemId}`);
-};
+  };
 
   useEffect(() => {
+    // load selected problem id from local storage on component mount
+    const storedSelectedProblemId = localStorage.getItem('selectedProblemId');
+    if (storedSelectedProblemId) {
+      setSelectedProblemId(storedSelectedProblemId);
+    }
+
     axios.get('/api/problems')
       .then((response) => {
         const firstFourProblems = response.data.slice(0, 4);
@@ -27,15 +33,16 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
       });
   }, []);
 
-
   return (
     <div>
       {problems.slice(0, 4).map((problem) => (
         <div key={problem.problem_id} style={{ marginBottom: '20px' }}>
           <h2>{problem.problem_name}</h2>
+          <h3>{problem.difficulty}</h3>
           <p>{problem.description}</p>
-          {selectedProblemId === problem.problem_id && <span>✔️</span>}
-          <button type='button' onClick={() => handleSelectProblem(problem.problem_id)}>
+          {/* use loose equal, problem_id is num, selectedProblemId is string */}
+          {selectedProblemId == problem.problem_id && <TaskAltIcon style={{ color: 'red', fontSize: 50 }} />}
+          <button type="button" onClick={() => handleSelectProblem(problem.problem_id)}>
             Select Problem
           </button>
         </div>
