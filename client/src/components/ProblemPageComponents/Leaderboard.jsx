@@ -5,7 +5,7 @@ function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/rank/')
+    axios.get('/api/rank/')
       .then((response) => {
         setLeaderboardData(response.data);
       })
