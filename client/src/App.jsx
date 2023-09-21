@@ -40,10 +40,9 @@ function App() {
     <div>
       <AppContext.Provider value={contextValue}>
         <WeekendContext.Provider value={{ weekend, toggleWeekend }}>
-          <Navbar />
-          {/* {account.loggedIn && <Navbar />}
+          {account.loggedIn && <Navbar />}
           {!account.loggedIn && <h1>Hello, Neon-Collab!</h1>}
-          {!account.loggedIn && <LoginPage />} */}
+          {!account.loggedIn && <LoginPage />}
           <div>
             <Routes>
               <Route path="/problemspage" element={<ProblemsPage />} />

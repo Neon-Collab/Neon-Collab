@@ -28,8 +28,8 @@ function Feedback() {
 
   const setChatsAndSelected = (chatsPromise) => {
     setChats(chatsPromise);
-    setSelectedProblem(chatsPromise[0].problem_id);
-    setChatId(chatsPromise[0].chat_id);
+    setSelectedProblem(chatsPromise[chatsPromise.length - 1].problem_id);
+    setChatId(chatsPromise[chatsPromise.length - 1].chat_id);
   };
 
   const setQueryAndSubmissions = (submissionsPromise) => {
@@ -138,9 +138,9 @@ function Feedback() {
       {weekend && modal && (
         <FeedbackForm
           chatId={chatId}
-          chats={chats}
           userId={userId}
           toggleVisibility={toggleVisibility}
+          problemId={problemId}
         />
       )}
       <Sidebar

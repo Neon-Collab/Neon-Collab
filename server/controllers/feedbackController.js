@@ -34,4 +34,14 @@ module.exports = {
     const results = await feedbackModel.getAllChats();
     res.send(results.rows).status(200);
   },
+  getPartnerId: async (req, res) => {
+    const { chatId } = req.query;
+    const results = await feedbackModel.getPartnerId(chatId);
+    res.send(results.rows).status(200);
+  },
+  getPartnerSolution: async (req, res) => {
+    const { partnerId, problemId } = req.query;
+    const results = await feedbackModel.getPartnerSolution(partnerId, problemId);
+    res.send(results.rows).status(200);
+  },
 };

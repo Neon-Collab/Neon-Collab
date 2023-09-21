@@ -36,6 +36,8 @@ router.post('/messages', controller.feedback.postMessage);
 router.get('/submission', controller.feedback.getAllSubmissions);
 router.post('/chats', controller.feedback.pairUsers);
 router.get('/chat', controller.feedback.getAllChats);
+router.get('/chat/partner', controller.feedback.getPartnerId);
+router.get('/submissions/partner', controller.feedback.getPartnerSolution);
 
 // Overall Rankings
 router.get('/rank', controller.rank.getRanks);

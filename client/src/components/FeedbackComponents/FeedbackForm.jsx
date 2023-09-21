@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function FeedbackForm({ chatId, userId, chats, toggleVisibility }) {
+function FeedbackForm({ chatId, userId, toggleVisibility, problemId }) {
   const [partnerSolution, setPartnerSolution] = useState("");
+  const [partnerId, setPartnerId] = useState(2);
   const [pros, setPros] = useState("");
   const [cons, setCons] = useState("");
   const [suggestions, setSuggestions] = useState("");
-
   const handleSubmit = () => {
     axios
       .post("/api/messages", {
@@ -16,6 +16,33 @@ function FeedbackForm({ chatId, userId, chats, toggleVisibility }) {
       })
       .then(toggleVisibility());
   };
+  useEffect(() => {
+    axios
+      .get("/api/chat/partner", {
+        params: {
+          chatId,
+        },
+      })
+      .then((results) => {
+        if (results.data[0].solver_id === userId) {
+          setPartnerId(results.data[0].reviewer_id);
+        } else {
+          setPartnerId(results.data[0].solver_id);
+        }
+      });
+  }, [chatId]);
+
+  useEffect(() => {
+    axios
+      .get("/api/submissions/partner", {
+        params: {
+          partnerId,
+          problemId,
+        },
+      })
+      .then((results) => setPartnerSolution(results.data[0].code));
+  }, [partnerId]);
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -25,7 +52,7 @@ function FeedbackForm({ chatId, userId, chats, toggleVisibility }) {
           <h4>Your Review</h4>
         </div>
         <div className="feedback">
-          <div className="inner-feedback">Code Here</div>
+          <div className="inner-feedback">{partnerSolution}</div>
           <div className="inner-feedback">
             <form>
               <label htmlFor="pros">Pros</label>

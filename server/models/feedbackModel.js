@@ -35,4 +35,14 @@ module.exports = {
     const result = await pool.query(query);
     return result;
   },
+  getPartnerId: async (chatId) => {
+    const query = 'SELECT * from chat where chat_id = $1';
+    const result = await pool.query(query, [chatId]);
+    return result;
+  },
+  getPartnerSolution: async (partnerId, problemId) => {
+    const query = 'SELECT * from submission where user_id = $1 AND problem_id = $2';
+    const result = await pool.query(query, [partnerId, problemId]);
+    return result;
+  },
 };
