@@ -13,9 +13,16 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #FFFFFF;
   height: 132px;
   padding: 0 40px;
+  background-color: #000324;
+  box-shadow: inset 0px 0px 70px 2px rgba(255, 0, 255, 0.25);
+}
+
+.routes {
+  width: 90%;
+  margin: auto;
+  padding-top: 2vh;
 }
 
 .profile-pic {
@@ -50,27 +57,47 @@ nav {
   color: magenta;
 }
 
+button {
+  background-color: magenta;
+  border-width: 0;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: rgb(174, 0, 174);
+}
+
+[type=button]{
+  background-color: magenta;
+  border-width: 0;
+  justify-content: center;
+}
+
+[type=button]:hover {
+  background-color: rgb(174, 0, 174);
+}
+
 .feedback-container {
   justify-content: center;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 80vh;
+  /* width: 100vw; */
 }
 
 .sidebar {
  flex: 1;
- margin: 1%;
- border: 1px solid black;
+ /* margin: 1%; */
+ border: 1px solid cyan;
  border-radius: 10px;
- padding: 20px;
+ /* padding: 20px; */
 }
 
 .user-solution {
   flex: 2;
-  margin: 1%;
-  border: 1px solid black;
+  /* margin: 1%; */
+  border: 1px solid cyan;
   border-radius: 10px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .selected {
@@ -122,8 +149,8 @@ nav {
 
 .feedback {
   display: flex;
-  justify-content: space-between;
-  height: 85%;
+  /* justify-content: space-between;
+  height: 85%; */
 }
 
 .bottom {
@@ -146,26 +173,6 @@ textarea {
   resize: none;
 }
 
-button {
-  background-color: magenta;
-  border-width: 0;
-  justify-content: center;
-}
-
-button:hover {
-  background-color: rgb(174, 0, 174);
-}
-
-[type=button]{
-  background-color: magenta;
-  border-width: 0;
-  justify-content: center;
-}
-
-[type=button]:hover {
-  background-color: rgb(174, 0, 174);
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -177,7 +184,57 @@ form {
   margin-top: 10px;
 }
 
+.close {
+  color: #aaa;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  height: 40px;
+}
 
+.chat-viewer {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1%;
+}
+
+.view-chat {
+  border: 1px solid black;
+  background-color: white;
+  height: 90%;
+  overflow-y: auto
+}
+
+.chat {
+  border: 1px solid purple;
+  height: 50px;
+  cursor: pointer;
+}
+
+.send-chat {
+  height: 7.5%;
+}
+
+.send-chat-btn {
+  height: 100%;
+  width: 13%;
+}
+
+.send-message {
+  height: 90%;
+  width: 85%;
+}
+
+.username {
+  font-size: 8px;
+}
+
+/******* LOGIN PAGE STYLES *******/
 div.loginPage {
   background-color: transparent;
   height: 100%;
@@ -212,55 +269,4 @@ input:auto-fill {
   background-color: #000324;
   border-width: 0;
   justify-content: center;
-}
-
-.close {
-  color: #aaa;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  cursor: pointer;
-  height: 40px;
-}
-
-.chat-viewer {
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 1%;
-}
-
-.view-chat {
-  border: 1px solid black;
-  background-color: white;
-  height: 90%;
-  overflow-y: auto
-}
-
-
-.chat {
-  border: 1px solid purple;
-  height: 50px;
-  cursor: pointer;
-}
-
-.send-chat {
-  height: 7.5%;
-}
-
-.send-chat-btn {
-  height: 100%;
-  width: 13%;
-}
-
-.send-message {
-  height: 90%;
-  width: 85%;
-}
-
-.username {
-  font-size: 8px;
 }
