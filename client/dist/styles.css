@@ -4,8 +4,9 @@
 
 body {
   margin: 0 auto;
-  background-color: #303030;
+  background-color: #000324;
   font-family: 'Inter', sans-serif;
+  color: cyan;
 }
 
 nav {
@@ -46,6 +47,7 @@ nav {
   text-decoration: none;
   padding-right: 104px;
   font-family: 'Audiowide', cursive;
+  color: magenta;
 }
 
 .feedback-container {
