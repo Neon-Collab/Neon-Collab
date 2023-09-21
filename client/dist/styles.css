@@ -73,13 +73,18 @@ button:hover {
 }
 
 [type=button]{
-  background-color: magenta;
+  background-color: rgba(0, 255, 255, 0.75);
   border-width: 0;
   justify-content: center;
+  color: black;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 16px;
 }
 
 [type=button]:hover {
-  background-color: rgb(174, 0, 174);
+  background-color: rgba(0, 255, 255, 0.5);
 }
 
 .feedback-container {
@@ -240,7 +245,23 @@ form {
 }
 
 /******* LOGIN PAGE STYLES *******/
-div.loginPage {
+
+
+/* Override default chrome autofill values */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(104, 255, 255);
+}
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color:  rgb(104, 255, 255);
+}
+
+div.login-page {
   background-color: transparent;
   height: 100%;
   width: 100%;
@@ -249,7 +270,7 @@ div.loginPage {
   top: 0;
 }
 
-.loginForm {
+.login-form {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   width: 35%;
@@ -258,20 +279,50 @@ div.loginPage {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color:  rgba(104, 255, 255, 0.824);
 }
-.loginForm h1 {
-  color: white;
-}
-
-.loginForm [type=text],input[type=email], input[type=password] {
-  background-color: #000324;
-  border-width: 0;
-  justify-content: center;
+.login-form h1 {
+  color:  rgb(104, 255, 255);
+  margin-bottom: 10px;
+  top: 25vh;
 }
 
-input:auto-fill {
-  background-color: #000324;
+.login {
+  width: 70%;
+  border-radius: 10px;
+  background-color: #00053894;
+}
+
+.login-form [type=text], input[type=email], input[type=password], select, .login {
   border-width: 0;
+  padding: 10px;
   justify-content: center;
+  color:  rgb(104, 255, 255);
+}
+
+.login-form [type=text], input[type=email], input[type=password], select {
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.switch-login {
+  font-size: 12px;
+  padding: 2px 5px;
+  color: cyan;
+  background-color: transparent;
+}
+
+.switch-login:hover {
+  font-size: 12px;
+  padding: 2px 5px;
+  color: cyan;
+  background-color: rgba(0, 255, 255, 0.20);
+}
+
+input:-webkit-autofill, input:autofill, input:-internal-autofill-selected {
+  background-color: transparent !important;
+  border-width: 0;
+  padding: 10px;
+  justify-content: center;
+  color:  rgb(104, 255, 255) !important;
 }
