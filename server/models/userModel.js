@@ -13,7 +13,7 @@ module.exports = {
   },
   getOneUser: async (username) => {
     const text = 'SELECT * FROM users WHERE username = $1;';
-    const values = [username];
+    const values = [`${username}`];
     const results = await db.query(text, values);
     return results.rows;
   },
