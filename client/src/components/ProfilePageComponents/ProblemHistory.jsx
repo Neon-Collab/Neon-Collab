@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function ProblemHistory({ id }) {
-  const [userID, setUserID] = useState(27);
+  // const [userID, setUserID] = useState(27);
   const [history, setHistory] = useState(null);
 
   useEffect(() => {

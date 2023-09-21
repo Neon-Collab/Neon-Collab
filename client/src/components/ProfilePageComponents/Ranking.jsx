@@ -3,7 +3,7 @@ import axios from 'axios';
 import AppContext from '../../contexts/AppContext.jsx';
 
 export default function Ranking({ id }) {
-  const [userID, setUserID] = useState(27);
+  // const [userID, setUserID] = useState(27);
   const [rank, setRank] = useState(null);
   const { account, setAccount } = useContext(AppContext);
 
