@@ -4,22 +4,35 @@
 
 body {
   margin: 0 auto;
-  background-color: #303030;
+  background-color: #000324;
   font-family: 'Inter', sans-serif;
+  color: rgb(109, 255, 255);
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #FFFFFF;
   height: 132px;
   padding: 0 40px;
+  background-color: #000324;
+  box-shadow: inset 0px 0px 70px 2px #000643;
+}
+
+.routes {
+  width: 90%;
+  margin: auto;
+  padding-top: 2vh;
 }
 
 .profile-pic {
   height: 78px;
   border-radius: 50%;
+}
+.profile-logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .link {
@@ -41,34 +54,80 @@ nav {
   padding-bottom: 47px;
 }
 
+.active-link {
+  color: #0BE7D7;
+  border-bottom: 5px solid #0BE7D7;
+  padding-bottom: 47px;
+}
+
 .logo {
   font-size: 30px;
   text-decoration: none;
   padding-right: 104px;
   font-family: 'Audiowide', cursive;
+  color: magenta;
+}
+
+button {
+  background-color: magenta;
+  border-width: 0;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: rgb(174, 0, 174);
+}
+
+[type=button]{
+  background-color: rgba(0, 255, 255, 0.77);
+  box-shadow: inset 0px 0px 15px 0px #000324;
+  border: 1px solid black;
+  justify-content: center;
+  color: #000324;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+[type=button]:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+.common-container {
+  /* border: 2px solid red; */
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #000540;
+  flex: wrap;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  width: 90%
 }
 
 .feedback-container {
   justify-content: center;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 80vh;
+  /* width: 100vw; */
 }
 
 .sidebar {
  flex: 1;
- margin: 1%;
- border: 1px solid black;
+ /* margin: 1%; */
+ border: 1px solid cyan;
  border-radius: 10px;
- padding: 20px;
+ /* padding: 20px; */
 }
 
 .user-solution {
   flex: 2;
-  margin: 1%;
-  border: 1px solid black;
+  /* margin: 1%; */
+  border: 1px solid cyan;
   border-radius: 10px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .selected {
@@ -120,8 +179,8 @@ nav {
 
 .feedback {
   display: flex;
-  justify-content: space-between;
-  height: 85%;
+  /* justify-content: space-between;
+  height: 85%; */
 }
 
 .bottom {
@@ -155,39 +214,6 @@ form {
   margin-top: 10px;
 }
 
-
-div.loginPage {
-  background-color: transparent;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.loginForm {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  width: 35%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.loginForm h1 {
-  color: white;
-}
-.loginForm [type=button]{
-  background-color: magenta;
-  border-width: 0;
-  justify-content: center;
-}
-.loginForm [type=text]{
-  background-color: #000324;
-  border-width: 0;
-  justify-content: center;
-}
-
 .close {
   color: #aaa;
   text-align: right;
@@ -214,7 +240,6 @@ div.loginPage {
   overflow-y: auto
 }
 
-
 .chat {
   border: 1px solid purple;
   height: 50px;
@@ -237,4 +262,87 @@ div.loginPage {
 
 .username {
   font-size: 8px;
+}
+
+/******* LOGIN PAGE STYLES *******/
+
+
+/* Override default chrome autofill values */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(104, 255, 255);
+}
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color:  rgb(104, 255, 255);
+}
+
+div.login-page {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.login-form {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color:  rgba(104, 255, 255, 0.824);
+}
+.login-form h1 {
+  color:  rgb(104, 255, 255);
+  margin-bottom: 10px;
+  top: 25vh;
+}
+
+.login {
+  width: 70%;
+  border-radius: 10px;
+  background-color: #00053894;
+}
+
+.login-form [type=text], input[type=email], input[type=password], select, .login {
+  border-width: 0;
+  padding: 10px;
+  justify-content: center;
+  color:  rgb(104, 255, 255);
+}
+
+.login-form [type=text], input[type=email], input[type=password], select {
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.switch-login {
+  font-size: 12px;
+  padding: 2px 5px;
+  color: cyan;
+  background-color: transparent;
+}
+
+.switch-login:hover {
+  font-size: 12px;
+  padding: 2px 5px;
+  color: cyan;
+  background-color: rgba(0, 255, 255, 0.20);
+}
+
+input:-webkit-autofill, input:autofill, input:-internal-autofill-selected {
+  background-color: transparent !important;
+  border-width: 0;
+  padding: 10px;
+  justify-content: center;
+  color:  rgb(104, 255, 255) !important;
 }

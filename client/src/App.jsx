@@ -52,6 +52,10 @@ function App() {
   useEffect(() => {
     try {
       setCurrentPage(location.pathname);
+      setAccount({
+        ...account,
+        currentPage: location.pathname,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -67,44 +71,46 @@ function App() {
         <WeekendContext.Provider value={{ weekend, toggleWeekend }}>
           <div>
             { (account.loggedIn && currentPage !== '/') && <Navbar /> }
-            <Routes>
-              <Route
-                path="/"
-                element={<LoginPage />}
-              />
-              <Route
-                path="/problemspage"
-                element={(
-                  <ProtectedRoute account={account}>
-                    <ProblemsPage />
-                  </ProtectedRoute>
-                )}
-              />
-              <Route
-                path="/editor/:problemId"
-                element={(
-                  <ProtectedRoute account={account}>
-                    <CodeEditorPage />
-                  </ProtectedRoute>
-                )}
-              />
-              <Route
-                path="/feedback"
-                element={(
-                  <ProtectedRoute account={account}>
-                    <Feedback />
-                  </ProtectedRoute>
-                )}
-              />
-              <Route
-                path="/profile"
-                element={(
-                  <ProtectedRoute account={account}>
-                    <ProfilePage />
-                  </ProtectedRoute>
-                )}
-              />
-            </Routes>
+            <div className="routes">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<LoginPage />}
+                />
+                <Route
+                  path="/problemspage"
+                  element={(
+                    <ProtectedRoute account={account}>
+                      <ProblemsPage />
+                    </ProtectedRoute>
+                  )}
+                />
+                <Route
+                  path="/editor/:problemId"
+                  element={(
+                    <ProtectedRoute account={account}>
+                      <CodeEditorPage />
+                    </ProtectedRoute>
+                  )}
+                />
+                <Route
+                  path="/feedback"
+                  element={(
+                    <ProtectedRoute account={account}>
+                      <Feedback />
+                    </ProtectedRoute>
+                  )}
+                />
+                <Route
+                  path="/profile"
+                  element={(
+                    <ProtectedRoute account={account}>
+                      <ProfilePage />
+                    </ProtectedRoute>
+                  )}
+                />
+              </Routes>
+            </div>
           </div>
         </WeekendContext.Provider>
       </AppContext.Provider>

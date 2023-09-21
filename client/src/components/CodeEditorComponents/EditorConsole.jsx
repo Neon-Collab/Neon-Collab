@@ -1,19 +1,22 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
 
 function EditorConsole({ output }) {
   return (
-    <div style={consoleStyle}>
+    <Paper elevation={3} style={consoleStyle}>
       <p>Output: </p>
-      {output}
-    </div>
+      <div>{output}</div>
+    </Paper>
   );
 }
 
 const consoleStyle = {
+  backgroundColor: '#333',
   color: 'white',
-  padding: '10px',
-  height: '100px',
-  border: '1px solid grey',
-  marginTop: '10px',
+  padding: '15px',
+  minHeight: '100px',
+  marginTop: '15px',
+  borderRadius: '4px',
 };
+
 export default EditorConsole;

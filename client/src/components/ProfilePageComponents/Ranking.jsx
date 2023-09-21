@@ -27,7 +27,7 @@ export default function Ranking({ id }) {
       });
   }, []);
   return (
-    <div className="component-container">
+    <div className="common-container component-container">
       <h1>Global Ranking</h1>
       {rankNum ? (
         <h2>{rank}</h2>
