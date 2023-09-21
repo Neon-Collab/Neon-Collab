@@ -12,7 +12,7 @@ export default function ProblemsSolved({ id }) {
   }, []);
   return (
     <div className="common-container component-container">
-      <h1>Problems Solved</h1>
+      <h1>Problems Submitted</h1>
       <h2>{solved}</h2>
     </div>
   );
