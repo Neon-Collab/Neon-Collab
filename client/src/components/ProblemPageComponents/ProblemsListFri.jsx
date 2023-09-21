@@ -21,10 +21,10 @@ function ProblemsListFri() {
     <div className="common-container">
       {problems.map((problem) => (
         <div key={problem.problem_id} style={{ marginBottom: '20px' }}>
-          <h2>{problem.problem_name}</h2>
-          <p>{problem.description}</p>
+          <h2 style={{ color: 'magenta' }}>{problem.problem_name}</h2>
+          <p style={{ color: 'white' }}>{problem.description}</p>
           <p>
-            Average Score: { Number(problem.averagescore).toFixed(2) }
+            Average Score: { (Number(problem.averagescore) * 100).toFixed(2) }%
           </p>
         </div>
       ))}

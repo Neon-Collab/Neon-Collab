@@ -34,7 +34,7 @@ function RankingbyProblem({ problemId }) {
             <tr key={rank.user_id}>
               <td>{index + 1}</td>
               <td>{rank.user_id}</td>
-              <td>{rank.score}</td>
+              <td>{(Number(rank.score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>

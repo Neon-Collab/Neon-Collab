@@ -35,16 +35,19 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
 
   return (
     <div className="common-container">
-      {problems.slice(0, 4).map((problem) => (
+      {problems.map((problem) => (
         <div key={problem.problem_id} style={{ marginBottom: '20px' }}>
-          <h2>{problem.problem_name}</h2>
+          <h2 style={{ color: 'magenta' }}>{problem.problem_name}</h2>
           <h3>{problem.difficulty}</h3>
-          <p>{problem.description}</p>
-          {/* use loose equal, problem_id is num, selectedProblemId is string */}
-          {selectedProblemId == problem.problem_id && <TaskAltIcon style={{ color: 'red', fontSize: 50 }} />}
-          <button type="button" onClick={() => handleSelectProblem(problem.problem_id)}>
-            Select Problem
-          </button>
+          <p style={{ color: 'white' }}>{problem.description}</p>
+
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <button type="button" onClick={() => handleSelectProblem(problem.problem_id)}>
+              Select Problem
+            </button>
+            {/* use loose equal, problem_id is num, selectedProblemId is string */}
+            {selectedProblemId == problem.problem_id && <TaskAltIcon style={{ color: 'magenta', fontSize: 50, marginLeft: '10px' }} />}
+          </div>
         </div>
       ))}
     </div>
