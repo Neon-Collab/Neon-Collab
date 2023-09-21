@@ -6,7 +6,7 @@ body {
   margin: 0 auto;
   background-color: #000324;
   font-family: 'Inter', sans-serif;
-  color: cyan;
+  color: rgb(109, 255, 255);
 }
 
 nav {
@@ -146,6 +146,26 @@ textarea {
   resize: none;
 }
 
+button {
+  background-color: magenta;
+  border-width: 0;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: rgb(174, 0, 174);
+}
+
+[type=button]{
+  background-color: magenta;
+  border-width: 0;
+  justify-content: center;
+}
+
+[type=button]:hover {
+  background-color: rgb(174, 0, 174);
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -166,6 +186,7 @@ div.loginPage {
   left: 0;
   top: 0;
 }
+
 .loginForm {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -175,16 +196,19 @@ div.loginPage {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .loginForm h1 {
   color: white;
 }
-.loginForm [type=button]{
-  background-color: magenta;
+
+.loginForm [type=text],input[type=email], input[type=password] {
+  background-color: #000324;
   border-width: 0;
   justify-content: center;
 }
-.loginForm [type=text]{
+
+input:auto-fill {
   background-color: #000324;
   border-width: 0;
   justify-content: center;

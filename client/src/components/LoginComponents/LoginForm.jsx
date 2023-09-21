@@ -26,7 +26,7 @@ export default function LoginForm() {
       });
       navigate('/problemspage');
     } catch (err) {
-      console.error(err);
+      alert('Error: Incorrect login information');
     }
   };
 
