@@ -40,7 +40,7 @@ function CodeEditorPage() {
       .catch((err) => {
         console.error(err);
       });
-  });
+  }, [problemId]);
   // Update the localStorage whenever the code changes
   useEffect(() => {
     localStorage.setItem(`editor-${problemId}`, code);
