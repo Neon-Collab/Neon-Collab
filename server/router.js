@@ -41,10 +41,12 @@ router.post('/chats', controller.feedback.pairUsers);
 router.get('/chat', controller.feedback.getAllChats);
 router.get('/chat/partner', controller.feedback.getPartnerId);
 router.get('/submissions/partner', controller.feedback.getPartnerSolution);
+router.get('/submissions/:problemId', controller.feedback.getSubmissionsForProblem);
 
 // Global Rankings
 router.post('/rank/calculate', controller.rank.calculateRanks); // Ranking Table needs to be empty before this endpoint is invoked otherwise it will cause an error
 router.get('/rank/', controller.rank.getRanks);
 router.get('/rank/search/:id', controller.rank.getAUserRank);
+
 
 module.exports = router;
