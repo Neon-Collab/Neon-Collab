@@ -29,6 +29,11 @@ nav {
   height: 78px;
   border-radius: 50%;
 }
+.profile-logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .link {
   font-size: 30px;
