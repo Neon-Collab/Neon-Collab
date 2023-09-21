@@ -18,7 +18,7 @@ export default function ProblemHistory({ id }) {
     <div className="common-container component-container">
       <h1>Problem History</h1>
       <div className="history-container">
-        {history.length ? (
+        {history.length > 0 ? (
           <table>
             <tr>
               <th>Problem Name</th>
