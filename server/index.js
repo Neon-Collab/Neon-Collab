@@ -27,6 +27,6 @@ app.use('/profile', (req, res) => {
 app.use('/api', router);
 
 const { PORT } = process.env;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Listening at http://0.0.0.0:${PORT}`);
 });
