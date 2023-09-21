@@ -10,21 +10,23 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
   const handleSelectProblem = (problemId) => {
     setSelectedProblemId(problemId);
     // save the problem_id to local storage
-    localStorage.setItem('selectedProblemId', problemId); // Save to local storage
+    localStorage.setItem('selectedProblemId', problemId);
     navigate(`/editor/${problemId}`);
 };
 
-
   useEffect(() => {
-    axios
-      .get('/api/problems')
+    axios.get('/api/problems')
       .then((response) => {
-        setProblems(response.data);
+        const firstFourProblems = response.data.slice(0, 4);
+        setProblems(firstFourProblems);
+        const firstFourProblemIds = firstFourProblems.map((p) => p.problem_id);
+        localStorage.setItem('firstFourProblemIds', JSON.stringify(firstFourProblemIds));
       })
       .catch((error) => {
         console.error('Error fetching problems:', error);
       });
   }, []);
+
 
   return (
     <div>
