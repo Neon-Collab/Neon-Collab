@@ -37,11 +37,12 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
     <div>
       {problems.map((problem) => (
         <div key={problem.problem_id} style={{ marginBottom: '20px' }}>
-          <h1>{problem.problem_name}</h1>
-          <h2>{problem.difficulty}</h2>
+          <h2>{problem.problem_name}</h2>
+          <h3>{problem.difficulty}</h3>
           <p>{problem.description}</p>
-          {selectedProblemId === problem.problem_id && <span>✔️</span>}
-          <button type='button' onClick={() => handleSelectProblem(problem.problem_id)}>
+          {/* use loose equal, problem_id is num, selectedProblemId is string */}
+          {selectedProblemId == problem.problem_id && <TaskAltIcon style={{ color: 'red', fontSize: 50 }} />}
+          <button type="button" onClick={() => handleSelectProblem(problem.problem_id)}>
             Select Problem
           </button>
         </div>
