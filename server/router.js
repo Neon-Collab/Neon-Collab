@@ -33,7 +33,9 @@ router.get('/chats', controller.feedback.getChats);
 router.get('/submissions', controller.feedback.getSubmissions);
 router.get('/messages', controller.feedback.getMessages);
 router.post('/messages', controller.feedback.postMessage);
-// router.post('/chats'.controller.feedback.pairUsers);
+router.get('/submission', controller.feedback.getAllSubmissions);
+router.post('/chats', controller.feedback.pairUsers);
+router.get('/chat', controller.feedback.getAllChats);
 
 // Overall Rankings
 router.get('/rank', controller.rank.getRanks);

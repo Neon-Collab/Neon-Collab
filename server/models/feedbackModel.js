@@ -12,6 +12,11 @@ module.exports = {
     const result = await pool.query(query, [user_id]);
     return result;
   },
+  getAllSubmissions: async () => {
+    const query = 'SELECT * FROM submission';
+    const result = await pool.query(query);
+    return result;
+  },
   getMessages: async (chatId) => {
     const query = 'SELECT * FROM messages WHERE chat_id = $1';
     const result = await pool.query(query, [chatId]);
@@ -21,8 +26,13 @@ module.exports = {
     const query = 'INSERT INTO messages(chat_id, user_id, message) VALUES ($1, $2, $3)';
     await pool.query(query, [chatId, userId, message]);
   },
-  // pairUsers: async (user1, user2) => {
-  //   const query = 'INSERT INTO chat(solver_id, user_id) VALUES ($1, $2)';
-  //   await pool.query(query, [user1, user2]);
-  // },
+  pairUsers: async (problemId, user1, user2) => {
+    const query = 'INSERT INTO chat(problem_id, solver_id, reviewer_id) VALUES ($1, $2, $3)';
+    await pool.query(query, [problemId, user1, user2]);
+  },
+  getAllChats: async () => {
+    const query = 'SELECT * FROM chat';
+    const result = await pool.query(query);
+    return result;
+  },
 };

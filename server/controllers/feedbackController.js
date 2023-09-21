@@ -21,4 +21,17 @@ module.exports = {
     await feedbackModel.postMessage(chatId, userId, message);
     res.sendStatus(201);
   },
+  getAllSubmissions: async (req, res) => {
+    const results = await feedbackModel.getAllSubmissions();
+    res.send(results.rows).status(200);
+  },
+  pairUsers: async (req, res) => {
+    const { problem_id, solver_id, reviewer_id } = req.body;
+    await feedbackModel.pairUsers(problem_id, solver_id, reviewer_id);
+    res.sendStatus(201);
+  },
+  getAllChats: async (req, res) => {
+    const results = await feedbackModel.getAllChats();
+    res.send(results.rows).status(200);
+  },
 };

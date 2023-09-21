@@ -16,14 +16,25 @@ function Feedback() {
   const [userId, setUserId] = useState(1); // this will be set to current user's id
   const [problems, setProblems] = useState([]);
   const [loader, setLoader] = useState(true);
-  const [modalVisibility, setModalVisibility] = useState(true);
-
+  const [problemId, setProblemId] = useState(1);
+  const [queryOfSubmissions, setQueryOfSubmissions] = useState(0);
+  const [postedSubmissions, setPostedSubmissions] = useState(0);
+  const [modal, setModal] = useState(true);
   const { weekend } = useContext(WeekendContext);
+
+  const toggleVisibility = () => {
+    setModal(false);
+  };
 
   const setChatsAndSelected = (chatsPromise) => {
     setChats(chatsPromise);
     setSelectedProblem(chatsPromise[0].problem_id);
     setChatId(chatsPromise[0].chat_id);
+  };
+
+  const setQueryAndSubmissions = (submissionsPromise) => {
+    setSubmissions(submissionsPromise);
+    setQueryOfSubmissions(submissionsPromise.length);
   };
 
   useEffect(() => {
@@ -34,17 +45,23 @@ function Feedback() {
         },
       })
       .then((results) => setChatsAndSelected(results.data));
-  }, []);
+  }, [weekend]);
 
   useEffect(() => {
     axios
       .get("/api/submissions", {
         params: {
-          id: 1, // this will be the current user's id
+          id: 1,
         },
       })
-      .then((results) => setSubmissions(results.data));
+      .then((results) => setProblemId(results.data[0].problem_id));
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("/api/submission")
+      .then((results) => setQueryAndSubmissions(results.data));
+  }, [weekend]);
 
   useEffect(() => {
     axios
@@ -54,7 +71,7 @@ function Feedback() {
         },
       })
       .then((results) => setMessages(results.data));
-  }, [chatId, loader]);
+  }, [chatId, loader, modal]);
 
   useEffect(() => {
     axios
@@ -74,14 +91,57 @@ function Feedback() {
     setChatId(Math.round(chatId));
   };
 
-  const closeModal = () => {
-    setModalVisibility(false);
+  const createPairs = (solutions) => {
+    const resultsArr = [];
+    const problemsArr = [];
+    for (let i = 1; i <= 4; i++) {
+      problemsArr.push(solutions.filter((obj) => obj.problem_id === i));
+    }
+    problemsArr.map((innerArr) => {
+      innerArr.sort((a, b) => a.score - b.score);
+    });
+    problemsArr.forEach((innerArr) => {
+      if (innerArr) {
+        while (innerArr.length >= 1) {
+          resultsArr.push([innerArr.pop(), innerArr.shift()]);
+        }
+      }
+    });
+    resultsArr.forEach((pair) => {
+      axios.post("/api/chats/", {
+        problem_id: pair[0].problem_id,
+        solver_id: pair[0].user_id,
+        reviewer_id: pair[1].user_id,
+      });
+    });
   };
+
+  useEffect(() => {
+    axios
+      .get("/api/chat")
+      .then((results) => setPostedSubmissions(results.data.length * 2));
+  }, [weekend]);
+
+  if (weekend) {
+    if (queryOfSubmissions > postedSubmissions) {
+      createPairs(submissions);
+    } else {
+      console.log("nothing to post");
+    }
+  }
+
+  console.log(queryOfSubmissions);
+  console.log(postedSubmissions);
 
   return (
     <div className="feedback-container">
-      {weekend && modalVisibility && (
-        <FeedbackForm closeModal={closeModal} chatId={chatId} chats={chats} />
+      {weekend && modal && (
+        <FeedbackForm
+          chatId={chatId}
+          chats={chats}
+          userId={userId}
+          toggleVisibility={toggleVisibility}
+        />
       )}
       <Sidebar
         chats={chats}

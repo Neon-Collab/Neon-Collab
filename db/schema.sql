@@ -71,13 +71,3 @@ CREATE TABLE rankings(
     PRIMARY KEY (user_id)
 );
 
-COPY users(user_id, username, first_name, last_name, email, password)
-FROM '/Users/brandongomez/Desktop/users.csv'
-DELIMITER ','
-CSV HEADER;
-
-COPY submission(user_id, problem_id, code, completed, submission_date, score)
-FROM '/Users/brandongomez/Desktop/submissions.csv'
-DELIMITER ','
-CSV HEADER;
-
