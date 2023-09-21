@@ -3,6 +3,7 @@ const {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  onAuthStateChanged,
 } = require('firebase/auth');
 const {
   query,
@@ -75,5 +76,23 @@ module.exports = {
   logout: async (req, res) => {
     await signOut(auth);
     res.sendStatus(200);
+  },
+
+  checkLoginStatus: async (req, res) => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const { uid } = user;
+        const q = query(collection(db, 'users'), where('uid', '==', uid));
+        const results = await getDocs(q);
+        const username = results?.docs[0]?.data().username;
+        res.send(username);
+      } else {
+        res.sendStatus(403);
+      }
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
   },
 };

@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ProblemsList from '../components/ProblemPageComponents/ProblemsList';
-import Ranking from '../components/ProblemPageComponents/RankingbyProblem';
+import ProblemsListFri from '../components/ProblemPageComponents/ProblemsListFri';
+import RankingbyProblem from '../components/ProblemPageComponents/RankingbyProblem';
 import Leaderboard from '../components/ProblemPageComponents/Leaderboard';
 import WeekendContext from '../contexts/WeekendContext.jsx';
 
@@ -15,13 +16,15 @@ import WeekendContext from '../contexts/WeekendContext.jsx';
 //   );
 // }
 
-function WeekdayPage() {
+function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
   return (
     <div>
       <h1>Mon-Thu page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList />
+          <ProblemsList
+            selectedProblemId={selectedProblemId}
+            setSelectedProblemId={setSelectedProblemId} />
         </div>
         <div style={{ flex: 1 }}>
           <Leaderboard />
@@ -31,16 +34,16 @@ function WeekdayPage() {
   );
 }
 
-function WeekendPage() {
+function WeekendPage({ selectedProblemId }) {
   return (
     <div>
       <h1>Fri-Sun page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
-          <ProblemsList />
+          <ProblemsListFri />
         </div>
         <div style={{ flex: 1 }}>
-          <Ranking />
+          <RankingbyProblem problemId={selectedProblemId} />
         </div>
       </div>
     </div>
@@ -53,10 +56,17 @@ function ProblemsPage() {
   // // check for the day, if it's Sunday or Friday or Saturday, isWeekendView
   // const [isWeekendView, setIsWeekendView] = React.useState(currentDay === 0 || currentDay > 4);
   const { weekend } = useContext(WeekendContext);
+  // Initialize from local storage
+  const initialProblemId = localStorage.getItem('selectedProblemId');
+  const [selectedProblemId, setSelectedProblemId] = useState(initialProblemId);
+
   return (
     <div>
       {/* <ToggleBar isWeekendView={isWeekendView} onToggle={() => setIsWeekendView(!isWeekendView)} /> */}
-      {weekend ? <WeekendPage /> : <WeekdayPage />}
+      {weekend && selectedProblemId
+        ? <WeekendPage selectedProblemId={selectedProblemId} />
+        : <WeekdayPage selectedProblemId={selectedProblemId} setSelectedProblemId={setSelectedProblemId} />
+    }
     </div>
   );
 }

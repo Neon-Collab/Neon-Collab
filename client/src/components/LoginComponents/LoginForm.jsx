@@ -22,6 +22,7 @@ export default function LoginForm() {
         ...account,
         loggedIn: true,
         username: usernameResult.data,
+        isReady: true,
       });
       navigate('/problemspage');
     } catch (err) {

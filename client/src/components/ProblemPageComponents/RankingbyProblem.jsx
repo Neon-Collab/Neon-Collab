@@ -1,48 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getUserScore, rankUsers } from '../../../../data/ranking.js';
 
-function Ranking({ problemId }) {
-  const [rankedUsers, setRankedUsers] = React.useState([]);
+function RankingbyProblem({ problemId }) {
+  const [rankings, setRankings] = useState([]);
 
-  React.useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const response = await axios.get('/users');
-        const allUsers = response.data;
-        const userScores = allUsers.map((user) => {
-          const specificProblem = user.problems.find((problem) => problem.id === problemId);
-
-          // clone user to manipulate problems without affecting original user
-          const clonedUser = { ...user, problems: [specificProblem] };
-
-          const score = getUserScore(clonedUser);
-          return { user: user.name, score };
+  useEffect(() => {
+    if (problemId) {
+      axios.get(`/api/submissions/${problemId}`)
+        .then((response) => {
+          const sortedRankings = response.data.sort((a, b) => b.score - a.score);
+          setRankings(sortedRankings);
+          setRankings(sortedRankings.slice(0, 20));
+        })
+        .catch((error) => {
+          console.error('Error fetching rankings:', error);
         });
-
-        const ranked = rankUsers(userScores);
-        setRankedUsers(ranked);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
     }
-
-    fetchUsers();
   }, [problemId]);
 
   return (
     <div>
-      <h2>
-        Ranking for Problem ID:
-        { problemId }
-      </h2>
-      {rankedUsers.map((user, index) => (
-        <div key={index}>
-          {user.rank}. {user.user} - {user.score}
+      <h2>Rankings for Problem {problemId}</h2>
+      {rankings.map((rank, index) => (
+        <div key={rank.user_id}>
+          {index + 1}. User {rank.user_id} - Score: {rank.score}
         </div>
       ))}
     </div>
   );
 }
 
-export default Ranking;
+export default RankingbyProblem;

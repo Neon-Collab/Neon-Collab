@@ -12,6 +12,7 @@ module.exports = {
     const result = await pool.query(query, [user_id]);
     return result;
   },
+
   getAllSubmissions: async () => {
     const query = 'SELECT * FROM submission';
     const result = await pool.query(query);
