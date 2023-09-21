@@ -14,7 +14,6 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
     navigate(`/editor/${problemId}`);
 };
 
-
   useEffect(() => {
     axios
       .get('/api/problems')
@@ -28,7 +27,7 @@ function ProblemsList({ selectedProblemId, setSelectedProblemId }) {
 
   return (
     <div>
-      {problems.map((problem) => (
+      {problems.slice(0, 4).map((problem) => (
         <div key={problem.problem_id} style={{ marginBottom: '20px' }}>
           <h2>{problem.problem_name}</h2>
           <p>{problem.description}</p>

@@ -10,7 +10,7 @@ function RankingbyProblem({ problemId }) {
         .then((response) => {
           const sortedRankings = response.data.sort((a, b) => b.score - a.score);
           setRankings(sortedRankings);
-          setRankings(sortedRankings.slice(0, 20));
+          // setRankings(sortedRankings.slice(0, 20));
         })
         .catch((error) => {
           console.error('Error fetching rankings:', error);
@@ -20,12 +20,25 @@ function RankingbyProblem({ problemId }) {
 
   return (
     <div>
-      <h2>Rankings for Problem {problemId}</h2>
-      {rankings.map((rank, index) => (
-        <div key={rank.user_id}>
-          {index + 1}. User {rank.user_id} - Score: {rank.score}
-        </div>
-      ))}
+      <h2>Ranking for Problem {problemId}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>User ID</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rankings.map((rank, index) => (
+            <tr key={rank.user_id}>
+              <td>{index + 1}</td>
+              <td>{rank.user_id}</td>
+              <td>{rank.score}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
