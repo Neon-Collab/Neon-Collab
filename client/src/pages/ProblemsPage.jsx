@@ -19,7 +19,6 @@ import WeekendContext from '../contexts/WeekendContext.jsx';
 function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
   return (
     <div>
-      <h1>Mon-Thu page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
           <ProblemsList
@@ -37,7 +36,6 @@ function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
 function WeekendPage({ selectedProblemId }) {
   return (
     <div>
-      <h1>Fri-Sun page here</h1>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
           <ProblemsListFri />
@@ -62,7 +60,6 @@ function ProblemsPage() {
 
   return (
     <div>
-      {/* <ToggleBar isWeekendView={isWeekendView} onToggle={() => setIsWeekendView(!isWeekendView)} /> */}
       {weekend && selectedProblemId
         ? <WeekendPage selectedProblemId={selectedProblemId} />
         : <WeekdayPage selectedProblemId={selectedProblemId} setSelectedProblemId={setSelectedProblemId} />
