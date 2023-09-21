@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginPage from './pages/LoginPage.jsx';
-import ProtectedRoute from './components/LoginComponents/ProtectedRoute.jsx'
+import ProtectedRoute from './components/LoginComponents/ProtectedRoute.jsx';
 // import CodeEditorPage from './pages/CodeEditorPage.jsx';
 import AppContext from './contexts/AppContext.jsx';
 import Navbar from './components/Navbar.jsx';
@@ -31,15 +31,17 @@ function App() {
       try {
         const currentUser = await axios.get('/api/checkLoginStatus');
         if (currentUser) {
-          console.log('User is logged in: ', currentUser);
+          console.log('User is logged in: ', currentUser.data);
+          // isReady checks if checkLoginStatus has returned before redirecting a private route
           setAccount({
             ...account,
             username: currentUser.data,
             loggedIn: true,
+            isReady: true,
           });
         }
       } catch (err) {
-        console.log('Please log in');
+        console.log('User is logged in');
       }
     };
     checkLoginStatus();
@@ -66,7 +68,7 @@ function App() {
               <Route
                 path="/problemspage"
                 element={(
-                  <ProtectedRoute loggedIn={account.loggedIn}>
+                  <ProtectedRoute account={account}>
                     <ProblemsPage />
                   </ProtectedRoute>
                 )}
@@ -74,7 +76,7 @@ function App() {
               <Route
                 path="/editor/:problemId"
                 element={(
-                  <ProtectedRoute loggedIn={account.loggedIn}>
+                  <ProtectedRoute account={account}>
                     <CodeEditorPage />
                   </ProtectedRoute>
                 )}
@@ -82,7 +84,7 @@ function App() {
               <Route
                 path="/feedback"
                 element={(
-                  <ProtectedRoute loggedIn={account.loggedIn}>
+                  <ProtectedRoute account={account}>
                     <Feedback />
                   </ProtectedRoute>
                 )}
@@ -90,7 +92,7 @@ function App() {
               <Route
                 path="/profile"
                 element={(
-                  <ProtectedRoute loggedIn={account.loggedIn}>
+                  <ProtectedRoute account={account}>
                     <ProfilePage />
                   </ProtectedRoute>
                 )}
