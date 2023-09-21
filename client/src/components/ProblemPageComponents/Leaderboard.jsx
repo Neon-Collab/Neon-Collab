@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const tableStyles = {
+  border: '1px solid black',
+  width: '80%',
+  margin: '0 auto',
+  borderCollapse: 'collapse',
+  textAlign: 'center',
+};
+
+const thTdStyles = {
+  border: '1px solid black',
+  padding: '8px',
+  textAlign: 'center',
+};
+
 function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
 
@@ -16,21 +30,21 @@ function Leaderboard() {
 
   return (
     <div className="common-container">
-      <h2>Leaderboard</h2>
-      <table>
+      <h2 style={{ color: 'magenta', textAlign: 'center' }}>Leaderboard</h2>
+      <table style={tableStyles}>
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>User ID</th>
-            <th>Score</th>
+            <th style={thTdStyles}>Rank</th>
+            <th style={thTdStyles}>User ID</th>
+            <th style={thTdStyles}>Score</th>
           </tr>
         </thead>
         <tbody>
           {leaderboardData.map((user) => (
             <tr key={user.user_id}>
-              <td>{user.rank}</td>
-              <td>{user.user_id}</td>
-              <td>{(Number(user.total_score) * 100).toFixed(2)}%</td>
+              <td style={thTdStyles}>{user.rank}</td>
+              <td style={thTdStyles}>{user.user_id}</td>
+              <td style={thTdStyles}>{(Number(user.total_score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>
@@ -38,5 +52,4 @@ function Leaderboard() {
     </div>
   );
 }
-
 export default Leaderboard;
