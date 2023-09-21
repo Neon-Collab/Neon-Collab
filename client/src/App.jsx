@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import LoginPage from './pages/LoginPage.jsx';
 import ProtectedRoute from './components/LoginComponents/ProtectedRoute.jsx';
@@ -14,9 +14,11 @@ import WeekendContext from './contexts/WeekendContext.jsx';
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [weekend, setWeekend] = useState(false);
   const [account, setAccount] = useState({});
   const [selectedProblemId, setSelectedProblemId] = useState(null);
+  const [currentPage, setCurrentPage] = useState('');
 
   const contextValue = useMemo(
     () => ({
@@ -47,6 +49,14 @@ function App() {
     checkLoginStatus();
   }, []);
 
+  useEffect(() => {
+    try {
+      setCurrentPage(location.pathname);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [location]);
+
   const toggleWeekend = () => {
     setWeekend((prev) => !prev);
   };
@@ -55,16 +65,13 @@ function App() {
     <div>
       <AppContext.Provider value={contextValue}>
         <WeekendContext.Provider value={{ weekend, toggleWeekend }}>
-          {account.loggedIn ? (
-            <Navbar />
-          ) : (
-            <>
-              <h1>Hello, Neon-Collab!</h1>
-              <LoginPage />
-            </>
-          )}
           <div>
+            { (account.loggedIn && currentPage !== '/') && <Navbar /> }
             <Routes>
+              <Route
+                path="/"
+                element={<LoginPage />}
+              />
               <Route
                 path="/problemspage"
                 element={(

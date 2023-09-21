@@ -31,7 +31,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form>
+    <form className="login">
       <input
         type="email"
         placeholder="Email"
