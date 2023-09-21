@@ -7,14 +7,17 @@ import SignupForm from '../components/LoginComponents/SignupForm.jsx';
 export default function LoginPage() {
   const [newUser, setNewUser] = useState(false);
   return (
-    <div>
-      <h1>Login Page</h1>
-      { newUser ? <SignupForm /> : <LoginForm /> }
-      <input
-        type="button"
-        onClick={() => setNewUser(!newUser)}
-        value={newUser ? 'Already a member? Log In' : 'New to NeonCollab? Create an Account'}
-      />
+    <div className="loginPage">
+      <div className="loginForm">
+        <h1>Hello, Neon-Collab!</h1>
+        { newUser ? <SignupForm /> : <LoginForm /> }
+        <input
+          type="button"
+          onClick={() => setNewUser(!newUser)}
+          value={newUser ? 'Already a member? Log In' : 'New to NeonCollab? Create an Account'}
+        />
+      </div>
+
     </div>
   );
 }

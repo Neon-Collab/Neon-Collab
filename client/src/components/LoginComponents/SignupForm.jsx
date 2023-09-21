@@ -54,7 +54,7 @@ export default function SignupForm() {
   };
 
   return (
-    <form>
+    <form className="login">
       <input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
       <input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setLastName(e.target.value)} required />
       <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />

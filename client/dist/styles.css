@@ -155,6 +155,34 @@ form {
   margin-top: 10px;
 }
 
+
+div.loginPage {
+  background-color: blue;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.loginForm {
+  background-color: magenta;
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loginForm h1 {
+  color: white;
+}
+.loginForm [type=button]{
+  background-color: rgb(0, 255, 26);
+  border-width: 0;
+  justify-content: center;
+}
+
 .close {
   color: #aaa;
   text-align: right;
