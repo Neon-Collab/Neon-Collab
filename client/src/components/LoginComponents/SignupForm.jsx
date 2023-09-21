@@ -37,6 +37,7 @@ export default function SignupForm() {
         ...account,
         loggedIn: true,
         username,
+        isReady: true,
       });
       const postgresUser = {
         firstname,
