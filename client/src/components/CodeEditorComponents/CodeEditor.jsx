@@ -15,6 +15,7 @@ function CodeEditor({ value, onChange }) {
       name="neon_code_editor"
       highlightActiveLine
       editorProps={{ $blockScrolling: true }}
+      height="600px"
     />
   );
 }
