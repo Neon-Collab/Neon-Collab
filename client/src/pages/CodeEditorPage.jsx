@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import AppContext from '../contexts/AppContext.jsx';
 import CodeEditor from '../components/CodeEditorComponents/CodeEditor.jsx';
 import SelectedProblem from '../components/CodeEditorComponents/SelectedProblem.jsx';
 import CodeSubmit from '../components/CodeEditorComponents/CodeSubmit.jsx';
@@ -9,12 +10,24 @@ import RunCode from '../components/CodeEditorComponents/RunCode.jsx';
 
 function CodeEditorPage() {
   const { problemId } = useParams();
+  const context = React.useContext(AppContext);
+  const { username } = context.account;
   const [problem, setProblem] = useState(null);
+  const [userId, setUserId] = useState(null);
   const storagedCode = localStorage.getItem(`editor-${problemId}`);
   const [code, setCode] = useState(storagedCode || 'Loading...');
   const [consoleOutput, setConsoleOutput] = useState('');
-  // Temporarily for testing
-  const userId = 2;
+
+  useEffect(() => {
+    axios.get(`/api/getUserId/${username}`)
+      .then((res) => {
+        setUserId(res.data.userId);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [username]);
+
   useEffect(() => {
     axios.get(`/api/problems/${problemId}`)
       .then((res) => {
