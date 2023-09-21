@@ -6,6 +6,12 @@ const models = require('../models/index');
 */
 
 module.exports = {
+  calculateRanks: (req, res) => {
+    models.rank.calculateUserRanks()
+      .then((response) => {
+        res.status(200).send(response);
+      });
+  },
   getRanks: (req, res) => {
     models.rank.getUserRanks()
       .then((response) => {

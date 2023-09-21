@@ -30,7 +30,7 @@ function Leaderboard() {
             <tr key={user.user_id}>
               <td>{user.rank}</td>
               <td>{user.user_id}</td>
-              <td>{user.score}</td>
+              <td>{user.total_score}</td>
             </tr>
           ))}
         </tbody>

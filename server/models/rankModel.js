@@ -7,7 +7,7 @@ const { rankUsers, getUserScore } = require('../../data/ranking.js');
 */
 
 module.exports = {
-  getUserRanks: async () => {
+  calculateUserRanks: async () => {
     const text = `SELECT user_id, json_strip_nulls(json_agg(json_build_object('id', problem_id, 'difficulty', difficulty, 'score', score, 'feedback', feedback))) as problems FROM submission RIGHT JOIN problems USING (problem_id) WHERE completed = TRUE AND AGE(current_date, submission_DATE) <= interval '21 days' GROUP BY user_id;
     `;
     const results = await db.query(text);
@@ -32,6 +32,11 @@ module.exports = {
     }
     // console.log(rankedUsers);
     return rankedUsers;
+  },
+  getUserRanks: async () => {
+    const text = 'SELECT user_id,total_score,rank from rankings ORDER BY rank';
+    const results = await db.query(text);
+    return results.rows;
   },
   getOneUserRank: async (id) => {
     const text = 'SELECT rank from rankings WHERE user_id = $1';
