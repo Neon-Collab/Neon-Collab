@@ -161,4 +161,17 @@ module.exports = {
       res.status(500).send('Server error');
     }
   },
+  getUserIdByUsername: async (req, res) => {
+    const { username } = req.params;
+    try {
+      const user = await codeEditorModel.getUserIdByUsername(username);
+      if (!user) {
+        return res.status(404).send({ error: 'User not found' });
+      }
+      return res.send({ userId: user.user_id });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send('Server error');
+    }
+  },
 };
