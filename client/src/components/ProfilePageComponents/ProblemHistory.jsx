@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function ProblemHistory() {
+export default function ProblemHistory({ id }) {
   const [userID, setUserID] = useState(27);
   const [history, setHistory] = useState(null);
 
   useEffect(() => {
-    axios.get(`/api/submissions_all/user/${userID}`)
+    axios.get(`/api/submissions_all/user/${id}`)
       .then((response) => {
         setHistory(response.data);
       });
