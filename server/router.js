@@ -13,6 +13,7 @@ router.get('/login', controller.login.logInWithEmailAndPassword);
 router.post('/signup', controller.login.registerWithEmailAndPassword);
 router.get('/resetPassword', controller.login.sendPasswordReset);
 router.get('/logout', controller.login.logout);
+router.get('/checkLoginStatus', controller.login.checkLoginStatus);
 
 // Users
 router.get('/users', controller.users.get);
