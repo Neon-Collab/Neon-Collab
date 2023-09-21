@@ -32,17 +32,18 @@ router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 router.post('/codeEditor/runCode', controller.codeEditor.runCode);
 
 // Feedback
-router.get('/feedback', controller.feedback.getChats);
+router.get('/chats', controller.feedback.getChats);
 router.get('/submissions', controller.feedback.getSubmissions);
 router.get('/messages', controller.feedback.getMessages);
 router.post('/messages', controller.feedback.postMessage);
+router.get('/submission', controller.feedback.getAllSubmissions);
+router.post('/chats', controller.feedback.pairUsers);
+router.get('/chat', controller.feedback.getAllChats);
+router.get('/chat/partner', controller.feedback.getPartnerId);
+router.get('/submissions/partner', controller.feedback.getPartnerSolution);
 
 // Overall Rankings
 router.get('/rank', controller.rank.getRanks);
 router.get('/rank/search/:id', controller.rank.getAUserRank);
-
-router.get('/submissions', controller.feedback.getSubmissions);
-router.get('/submissions/:problemId', controller.feedback.getSubmissionsForProblem);
-router.get('/messages', controller.feedback.getMessages);
 
 module.exports = router;

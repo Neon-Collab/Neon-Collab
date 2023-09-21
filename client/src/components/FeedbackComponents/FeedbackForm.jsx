@@ -1,31 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function FeedbackForm({ closeModal }) {
+function FeedbackForm({ chatId, userId, toggleVisibility, problemId }) {
+  const [partnerSolution, setPartnerSolution] = useState("");
+  const [partnerId, setPartnerId] = useState(2);
+  const [pros, setPros] = useState("");
+  const [cons, setCons] = useState("");
+  const [suggestions, setSuggestions] = useState("");
+  const handleSubmit = () => {
+    axios
+      .post("/api/messages", {
+        chatId,
+        userId,
+        message: `PROS: ${pros} CONS: ${cons} SUGGESTIONS: ${suggestions}`,
+      })
+      .then(toggleVisibility());
+  };
+  useEffect(() => {
+    axios
+      .get("/api/chat/partner", {
+        params: {
+          chatId,
+        },
+      })
+      .then((results) => {
+        if (results.data[0].solver_id === userId) {
+          setPartnerId(results.data[0].reviewer_id);
+        } else {
+          setPartnerId(results.data[0].solver_id);
+        }
+      });
+  }, [chatId]);
+
+  useEffect(() => {
+    axios
+      .get("/api/submissions/partner", {
+        params: {
+          partnerId,
+          problemId,
+        },
+      })
+      .then((results) => setPartnerSolution(results.data[0].code));
+  }, [partnerId]);
+
   return (
-    <div className='modal'>
-      <div className='modal-content'>
-        <div className='close' onClick={() => closeModal()}>
-          x
-        </div>
-        <div className='top'>
+    <div className="modal">
+      <div className="modal-content">
+        <div className="close" />
+        <div className="top">
           <h4>Code To Review</h4>
           <h4>Your Review</h4>
         </div>
-        <div className='feedback'>
-          <div className='inner-feedback'>Code Here</div>
-          <div className='inner-feedback'>
+        <div className="feedback">
+          <div className="inner-feedback">{partnerSolution}</div>
+          <div className="inner-feedback">
             <form>
-              <label htmlFor='pros'>Pros</label>
-              <textarea id='pros' />
-              <label htmlFor='cons'>Cons</label>
-              <textarea id='cons' />
-              <label htmlFor='suggestions'>Suggestions</label>
-              <textarea id='suggestions' />
+              <label htmlFor="pros">Pros</label>
+              <textarea
+                id="pros"
+                onChange={(e) => setPros(e.target.value)}
+                required
+              />
+              <label htmlFor="cons">Cons</label>
+              <textarea
+                id="cons"
+                onChange={(e) => setCons(e.target.value)}
+                required
+              />
+              <label htmlFor="suggestions">Suggestions</label>
+              <textarea
+                id="suggestions"
+                onChange={(e) => setSuggestions(e.target.value)}
+                required
+              />
             </form>
           </div>
         </div>
-        <div className='bottom'>
-          <button type='button' className='form-submit'>
+        <div className="bottom">
+          <button
+            type="button"
+            className="form-submit"
+            onClick={() => handleSubmit()}
+          >
             SUBMIT
           </button>
         </div>

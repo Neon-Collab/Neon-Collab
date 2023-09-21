@@ -234,3 +234,7 @@ div.loginPage {
   height: 90%;
   width: 85%;
 }
+
+.username {
+  font-size: 8px;
+}

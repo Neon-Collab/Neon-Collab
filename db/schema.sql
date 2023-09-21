@@ -71,4 +71,3 @@ CREATE TABLE rankings(
     PRIMARY KEY (user_id)
 );
 
-
