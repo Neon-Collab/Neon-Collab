@@ -3,22 +3,19 @@ import axios from 'axios';
 
 function ProblemsListFri() {
   const [problems, setProblems] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
+    // fetch the same four problems as in Mon-Thu view
+    const firstFourProblemIds = JSON.parse(localStorage.getItem('firstFourProblemIds') || '[]');
     axios.get('/api/problemsWithScores')
       .then((response) => {
-        setProblems(response.data);
+        const relevantProblems = response.data.filter(problem => firstFourProblemIds.includes(problem.problem_id));
+        setProblems(relevantProblems);
       })
       .catch((error) => {
         console.error('Error fetching problems with scores:', error);
-        setError('Failed to fetch problems. Please try again later.');
       });
   }, []);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   return (
     <div className="common-container">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AppContext from '../../contexts/AppContext.jsx';
 
-export default function Ranking() {
+export default function Ranking({ id }) {
   const [userID, setUserID] = useState(27);
   const [rank, setRank] = useState(null);
   const { account, setAccount } = useContext(AppContext);
@@ -20,14 +20,14 @@ export default function Ranking() {
   };
 
   useEffect(() => {
-    axios.get(`/api/rank/search/${userID}`)
+    axios.get(`/api/rank/search/${id}`)
       .then((response) => {
         setRank((response.data.rank + getSuffix(response.data.rank)));
       });
   }, []);
   return (
     <div className="common-container component-container">
-      <h1>Current Ranking</h1>
+      <h1>Global Ranking</h1>
       <h2>{rank}</h2>
     </div>
   );

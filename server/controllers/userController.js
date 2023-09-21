@@ -42,7 +42,7 @@ module.exports = {
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   },
   getCompleted: (req, res) => {
     const { id } = req.params;

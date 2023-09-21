@@ -57,4 +57,14 @@ module.exports = {
     }
     return false;
   },
+  getUserIdByUsername: async (username) => {
+    const text = `
+      SELECT user_id
+      FROM users
+      WHERE username = $1;
+    `;
+    const values = [username];
+    const result = await pool.query(text, values);
+    return result.rows[0];
+  },
 };

@@ -30,6 +30,7 @@ router.get('/problems/:id', controller.problems.getOne);
 // Submission/Code editor
 router.post('/codeEditor/submit', controller.codeEditor.submitCode);
 router.post('/codeEditor/runCode', controller.codeEditor.runCode);
+router.get('/getUserId/:username', controller.codeEditor.getUserIdByUsername);
 
 // Feedback
 router.get('/chats', controller.feedback.getChats);
