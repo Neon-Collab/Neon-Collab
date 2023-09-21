@@ -21,4 +21,8 @@ module.exports = {
     const query = 'INSERT INTO messages(chat_id, user_id, message) VALUES ($1, $2, $3)';
     await pool.query(query, [chatId, userId, message]);
   },
+  // pairUsers: async (user1, user2) => {
+  //   const query = 'INSERT INTO chat(solver_id, user_id) VALUES ($1, $2)';
+  //   await pool.query(query, [user1, user2]);
+  // },
 };

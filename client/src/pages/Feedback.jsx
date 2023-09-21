@@ -1,16 +1,16 @@
 // import React from 'react';
-import axios from 'axios';
-import React, { useEffect, useState, useContext } from 'react';
-import FeedbackForm from '../components/FeedbackComponents/FeedbackForm.jsx';
-import ChatViewer from '../components/FeedbackComponents/ChatViewer.jsx';
-import Sidebar from '../components/FeedbackComponents/Sidebar.jsx';
-import UserSolution from '../components/FeedbackComponents/UserSolution.jsx';
-import WeekendContext from '../contexts/WeekendContext.jsx';
+import axios from "axios";
+import React, { useEffect, useState, useContext } from "react";
+import FeedbackForm from "../components/FeedbackComponents/FeedbackForm.jsx";
+import ChatViewer from "../components/FeedbackComponents/ChatViewer.jsx";
+import Sidebar from "../components/FeedbackComponents/Sidebar.jsx";
+import UserSolution from "../components/FeedbackComponents/UserSolution.jsx";
+import WeekendContext from "../contexts/WeekendContext.jsx";
 
 function Feedback() {
   const [chats, setChats] = useState([]);
   const [submissions, setSubmissions] = useState([]);
-  const [selectedProblem, setSelectedProblem] = useState('');
+  const [selectedProblem, setSelectedProblem] = useState("");
   const [chatId, setChatId] = useState(0);
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState(1); // this will be set to current user's id
@@ -28,37 +28,37 @@ function Feedback() {
 
   useEffect(() => {
     axios
-      .get('/api/feedback', {
+      .get("/api/chats", {
         params: {
-          id: 1 // this will be the current user's id
-        }
+          id: 1, // this will be the current user's id
+        },
       })
       .then((results) => setChatsAndSelected(results.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get('/api/submissions', {
+      .get("/api/submissions", {
         params: {
-          id: 1 // this will be the current user's id
-        }
+          id: 1, // this will be the current user's id
+        },
       })
       .then((results) => setSubmissions(results.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get('/api/messages', {
+      .get("/api/messages", {
         params: {
-          chatId
-        }
+          chatId,
+        },
       })
       .then((results) => setMessages(results.data));
   }, [chatId, loader]);
 
   useEffect(() => {
     axios
-      .get('/api/problems')
+      .get("/api/problems")
       .then((results) => {
         const problemObj = {};
         results.data.forEach((obj) => {
@@ -79,16 +79,26 @@ function Feedback() {
   };
 
   return (
-    <div className='feedback-container'>
-      {weekend && modalVisibility && <FeedbackForm closeModal={closeModal} />}
+    <div className="feedback-container">
+      {weekend && modalVisibility && (
+        <FeedbackForm closeModal={closeModal} chatId={chatId} chats={chats} />
+      )}
       <Sidebar
         chats={chats}
         selectedProblem={selectedProblem}
         handleClick={handleClick}
         problems={problems}
       />
-      <UserSolution submissions={submissions} selectedProblem={selectedProblem} />
-      <ChatViewer messages={messages} userId={userId} chatId={chatId} setLoader={setLoader} />
+      <UserSolution
+        submissions={submissions}
+        selectedProblem={selectedProblem}
+      />
+      <ChatViewer
+        messages={messages}
+        userId={userId}
+        chatId={chatId}
+        setLoader={setLoader}
+      />
     </div>
   );
 }
