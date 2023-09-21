@@ -25,8 +25,8 @@ export default function ProfilePage() {
         <>
           <AccountInfo user={user} />
           <Ranking id={user.user_id} />
-          <ProblemHistory />
-          <ProblemsSolved />
+          <ProblemHistory id={user.user_id} />
+          <ProblemsSolved id={user.user_id} />
         </>
       ) : <h1>Loading...</h1>}
     </div>
