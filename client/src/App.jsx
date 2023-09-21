@@ -11,6 +11,7 @@ import Feedback from './pages/Feedback.jsx';
 import ProblemsPage from './pages/ProblemsPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import WeekendContext from './contexts/WeekendContext.jsx';
+import Button from '@mui/material/Button';
 
 function App() {
   const navigate = useNavigate();

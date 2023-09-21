@@ -30,7 +30,7 @@ function Leaderboard() {
             <tr key={user.user_id}>
               <td>{user.rank}</td>
               <td>{user.user_id}</td>
-              <td>{user.total_score}</td>
+              <td>{(Number(user.total_score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>
