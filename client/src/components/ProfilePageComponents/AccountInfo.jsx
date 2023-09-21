@@ -6,21 +6,24 @@ export default function AccountInfo() {
   const { account, setAccount } = useContext(AppContext);
   const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   console.log(account)
-  //   axios.get(`/users/search/${account.username}`)
-  //     .then((response) => {
-  //       setUser(response.data);
-  //     });
-  // }, []);
-  // console.log(user)
+  useEffect(() => {
+    axios.get(`/api/users/search/${account.username}`)
+      .then((response) => {
+        setUser(response.data[0]);
+      });
+  }, []);
   return (
     <div className="component-container">
       <h1>Account Information</h1>
       <div className="account-container">
-        <span>Name: </span>
-        <span>Username: </span>
-        <span>Email: </span>
+        {user ? (
+          <>
+            <span>Name: {user.first_name} {user.last_name}</span>
+            <span>Username: {user.username}</span>
+            <span>Email: {user.email}</span>
+            <span>Skill Level: {user.skill_level}</span>
+          </>
+        ) : <span>No User Data</span>}
       </div>
     </div>
   );
