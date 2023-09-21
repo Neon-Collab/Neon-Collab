@@ -157,7 +157,7 @@ form {
 
 
 div.loginPage {
-  background-color: blue;
+  background-color: transparent;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -165,7 +165,7 @@ div.loginPage {
   top: 0;
 }
 .loginForm {
-  background-color: magenta;
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   width: 35%;
   height: 100%;
@@ -178,7 +178,12 @@ div.loginPage {
   color: white;
 }
 .loginForm [type=button]{
-  background-color: rgb(0, 255, 26);
+  background-color: magenta;
+  border-width: 0;
+  justify-content: center;
+}
+.loginForm [type=text]{
+  background-color: #000324;
   border-width: 0;
   justify-content: center;
 }

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import LoginForm from '../components/LoginComponents/LoginForm.jsx';
 import SignupForm from '../components/LoginComponents/SignupForm.jsx';
-
-// save skill level in postgres and auth data in firestore
+import ParticlesComponent from '../components/LoginComponents/Particles.js';
 
 export default function LoginPage() {
   const [newUser, setNewUser] = useState(false);
+
   return (
     <div className="loginPage">
       <div className="loginForm">
@@ -17,7 +17,7 @@ export default function LoginPage() {
           value={newUser ? 'Already a member? Log In' : 'New to NeonCollab? Create an Account'}
         />
       </div>
-
+      <ParticlesComponent />
     </div>
   );
 }
