@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { logout } from '../../../server/controllers/firebaseController.js';
 import AppContext from '../contexts/AppContext.jsx';
@@ -16,11 +16,12 @@ function Navbar() {
   // const { account, setAccount } = useContext(AppContext);
   const context = useContext(AppContext);
   const { weekend, toggleWeekend } = useContext(WeekendContext);
-
+  const location = useLocation();
   const { account, setAccount } = context;
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
+  console.log('This is the location.pathname', '/problemspage' === location.pathname)
   const logout = async () => {
     try {
       await axios.get('/api/logout');
@@ -41,13 +42,13 @@ function Navbar() {
         <Link className='logo' to={account.loggedIn ? '/problemspage' : '/'}>
           neonCollab
         </Link>
-        <Link className='link' to='/problemspage'>
+        <Link className={'/problemspage' === location.pathname ? 'active-link link' : 'link'} to='/problemspage'>
           Problems
         </Link>
         {/* <Link className='link' to='/editor'>
           Editor
         </Link> */}
-        <Link className='link' to='/feedback'>
+        <Link className={'/feedback' === location.pathname ? 'active-link link' : 'link'} to='/feedback'>
           Feedback
         </Link>
       </div>
@@ -55,8 +56,8 @@ function Navbar() {
       <button type='button' onClick={() => toggleWeekend()}>
         Change Weekday
       </button>
-      <Link to='/profile'>
-        <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' />
+      <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
+        <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' activeClassname='active-link'/>
       </Link>
     </nav>
   );
