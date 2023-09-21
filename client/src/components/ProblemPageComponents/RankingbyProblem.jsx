@@ -19,7 +19,7 @@ function RankingbyProblem({ problemId }) {
   }, [problemId]);
 
   return (
-    <div>
+    <div className="common-container">
       <h2>Rankings for Problem {problemId}</h2>
       {rankings.map((rank, index) => (
         <div key={rank.user_id}>

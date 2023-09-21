@@ -15,7 +15,7 @@ export default function AccountInfo() {
   // }, []);
   // console.log(user)
   return (
-    <div className="component-container">
+    <div className="common-container component-container">
       <h1>Account Information</h1>
       <div className="account-container">
         <span>Name: </span>

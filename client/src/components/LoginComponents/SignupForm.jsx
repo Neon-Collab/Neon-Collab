@@ -67,7 +67,7 @@ export default function SignupForm() {
         required
       >
         <option value="">Level of experience with JavaScript...</option>
-        <option value="Beginner">Beginer</option>
+        <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
         <option value="Advanced">Advanced</option>
         <option value="Expert">Expert</option>

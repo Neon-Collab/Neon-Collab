@@ -26,7 +26,7 @@ export default function Ranking() {
       });
   }, []);
   return (
-    <div className="component-container">
+    <div className="common-container component-container">
       <h1>Current Ranking</h1>
       <h2>{rank}</h2>
     </div>
