@@ -24,7 +24,8 @@ module.exports = {
       await signInWithEmailAndPassword(auth, email, password);
       res.send(username);
     } catch (err) {
-      console.error(err);
+      console.error('Error message: ', err.code);
+      res.status(400).send('Login error: INSERT MSG HERE');
     }
   },
 

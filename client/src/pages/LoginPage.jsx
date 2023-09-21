@@ -7,11 +7,12 @@ export default function LoginPage() {
   const [newUser, setNewUser] = useState(false);
 
   return (
-    <div className="loginPage">
-      <div className="loginForm">
+    <div className="login-page">
+      <div className="login-form">
         <h1>Hello, Neon-Collab!</h1>
         { newUser ? <SignupForm /> : <LoginForm /> }
         <input
+          className="switch-login"
           type="button"
           onClick={() => setNewUser(!newUser)}
           value={newUser ? 'Already a member? Log In' : 'New to NeonCollab? Create an Account'}
