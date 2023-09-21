@@ -52,6 +52,10 @@ function App() {
   useEffect(() => {
     try {
       setCurrentPage(location.pathname);
+      setAccount({
+        ...account,
+        currentPage: location.pathname,
+      });
     } catch (err) {
       console.error(err);
     }
