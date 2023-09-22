@@ -35,7 +35,7 @@ function Navbar() {
       console.error(err);
     }
   };
-
+  // alternate profile photo: https://i.ibb.co/q9TpWV6/Ash-Squirtle.png
   return (
     <nav>
       <div>
@@ -60,7 +60,7 @@ function Navbar() {
         <input type='button' value='Sign Out' onClick={logout} />
         <button type="button" onClick={() => navigate('/profile')}>Hello, {account.username}!</button>
         <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
-          <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' activeClassname='active-link'/>
+          <img className='profile-pic' src='https://i.ibb.co/R4rJ15t/pokemon-lets-go-find-squirtle-copy.png' alt='profile pic' activeClassname='active-link'/>
         </Link>
       </div>
     </nav>
