@@ -13,7 +13,7 @@ function Feedback() {
   const [selectedProblem, setSelectedProblem] = useState("");
   const [chatId, setChatId] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [userId, setUserId] = useState(5); // this will be set to current user's id
+  const [userId, setUserId] = useState(6); // this will be set to current user's id
   const [problems, setProblems] = useState([]);
   const [loader, setLoader] = useState(true);
   const [problemId, setProblemId] = useState(1);
@@ -29,6 +29,10 @@ function Feedback() {
   const toggleVisibility = () => {
     setModal(false);
   };
+
+  useEffect(() => {
+    axios.get("/users");
+  });
 
   const setChatsAndSelected = (chatsPromise) => {
     setChats(chatsPromise);
