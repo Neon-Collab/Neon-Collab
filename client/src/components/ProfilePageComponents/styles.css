@@ -9,10 +9,16 @@
 .component-container {
   /* border: solid 1px red; */
   width: 40%;
+  color: white;
 }
 
 .account-container {
   display: flex;
   flex-direction: column;
-  align-items: space-between;
+  gap: 30px;
+
+}
+
+.history-table {
+  text-align: left;
 }

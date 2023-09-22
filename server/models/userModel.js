@@ -34,7 +34,7 @@ module.exports = {
     return results.rows;
   },
   getUserAttempts: async (id) => {
-    const text = 'SELECT * FROM submission WHERE user_id = $1';
+    const text = 'SELECT problem_id, user_id, code, completed, submission_date, score, feedback, problem_name, difficulty FROM submission RIGHT JOIN problems USING (problem_id) WHERE user_id = $1';
     const values = [id];
     const results = await db.query(text, values);
     return results.rows;

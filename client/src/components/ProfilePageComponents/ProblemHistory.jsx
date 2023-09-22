@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 export default function ProblemHistory({ id }) {
   const [userID, setUserID] = useState(27);
@@ -12,22 +13,22 @@ export default function ProblemHistory({ id }) {
       });
   }, []);
 
-  // console.log(history)
+ console.log(history)
 
   return (
     <div className="common-container component-container">
       <h1>Problem History</h1>
       <div className="history-container">
         {history.length > 0 ? (
-          <table>
+          <table className="history-table">
             <tr>
               <th>Problem Name</th>
               <th>Percent</th>
             </tr>
             {history.map((problem, i) => (
               <tr key={i}>
-                <td>Problem {problem.id}</td>
-                <td>{problem.score}%</td>
+                <td>{problem.problem_name}</td>
+                <td>{problem.score * 100}% {problem.score === 1 && <TaskAltIcon style={{ color: 'magenta', fontSize: 30, marginLeft: '25px' }}/>}</td>
               </tr>
             ))}
           </table>
