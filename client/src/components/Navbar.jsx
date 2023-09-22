@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Text } from 'react';
 import axios from 'axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -58,6 +58,7 @@ function Navbar() {
           Change Weekday
         </button>
         <input type='button' value='Sign Out' onClick={logout} />
+        <button type="button" onClick={() => navigate('/profile')}>Hello, {account.username}!</button>
         <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
           <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' activeClassname='active-link'/>
         </Link>
