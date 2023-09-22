@@ -1,6 +1,6 @@
 import React from "react";
 
-function Sidebar({ chats, selectedProblem, handleClick, problems }) {
+function Sidebar({ chats, selectedProblem, handleClick, problems, messages }) {
   return (
     <div className="sidebar container">
       <h1>Messages</h1>

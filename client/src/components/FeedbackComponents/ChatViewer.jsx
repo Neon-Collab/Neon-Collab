@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function ChatViewer({ messages, userId, chatId, setLoader }) {
+function ChatViewer({ messages, userId, chatId, render }) {
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState([]);
 
@@ -12,7 +12,7 @@ function ChatViewer({ messages, userId, chatId, setLoader }) {
         userId,
         message,
       })
-      .then(setLoader((prev) => !prev));
+      .then(() => render());
   };
 
   useEffect(() => {
