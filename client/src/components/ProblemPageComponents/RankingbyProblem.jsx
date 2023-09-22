@@ -47,17 +47,17 @@ function RankingbyProblem({ problemId }) {
       <table className="rank-table">
         <thead>
           <tr>
-            <th style={thTdStyles}>Rank</th>
-            <th style={thTdStyles}>User ID</th>
-            <th style={thTdStyles}>Score</th>
+            <th>Rank</th>
+            <th>User ID</th>
+            <th>Score</th>
           </tr>
         </thead>
         <tbody>
           {rankings.map((rank, index) => (
             <tr key={rank.user_id}>
-              <td style={thTdStyles}>{index + 1}</td>
-              <td style={thTdStyles}>{rank.user_id}</td>
-              <td style={thTdStyles}>{(Number(rank.score) * 100).toFixed(2)}%</td>
+              <td>{index + 1}</td>
+              <td>{rank.user_id}</td>
+              <td>{(Number(rank.score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>

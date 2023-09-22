@@ -34,17 +34,17 @@ function Leaderboard() {
       <table className="rank-table">
         <thead>
           <tr>
-            <th style={thTdStyles}>Rank</th>
-            <th style={thTdStyles}>User ID</th>
-            <th style={thTdStyles}>Score</th>
+            <th>Rank</th>
+            <th>User ID</th>
+            <th>Score</th>
           </tr>
         </thead>
         <tbody>
           {leaderboardData.map((user) => (
             <tr key={user.user_id}>
-              <td style={thTdStyles}>{user.rank}</td>
-              <td style={thTdStyles}>{user.user_id}</td>
-              <td style={thTdStyles}>{(Number(user.total_score) * 100).toFixed(2)}%</td>
+              <td>{user.rank}</td>
+              <td>{user.user_id}</td>
+              <td>{(Number(user.total_score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>
