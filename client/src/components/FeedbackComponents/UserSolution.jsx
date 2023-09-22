@@ -2,8 +2,8 @@ import React from "react";
 
 function UserSolution({ submissions, selectedProblem, userId }) {
   return (
-    <div className="user-solution container">
-      <h1>Your Solution</h1>
+    <div className="common-container" style={{ flex: 2 }}>
+      <h2>Your Solution</h2>
       {submissions.length ? (
         submissions.map((submission) =>
           submission.user_id === userId &&

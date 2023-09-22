@@ -69,7 +69,7 @@ export default function ParticlesComponent() {
             "quantity": 5,
             "particles": {
               "color": {
-                "value": "#ff0000",
+                "value": "#ff00ff",
                 "animation": {
                   "enable": true,
                   "speed": 400,
@@ -235,7 +235,7 @@ export default function ParticlesComponent() {
           }
         },
         "color": {
-          "value": "#ff0000",
+          "value": "#ff00ff",
           "animation": {
             "h": {
               "count": 0,
@@ -273,7 +273,7 @@ export default function ParticlesComponent() {
             "value": 90
           },
           "attract": {
-            "distance": 200,
+            "distance": 300,
             "enable": false,
             "rotate": {
               "x": 3000,
@@ -295,7 +295,7 @@ export default function ParticlesComponent() {
             "acceleration": 9.81,
             "enable": false,
             "inverse": false,
-            "maxSpeed": 50
+            "maxSpeed": 40
           },
           "path": {
             "clamp": true,

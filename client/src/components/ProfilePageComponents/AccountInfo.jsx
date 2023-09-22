@@ -7,7 +7,7 @@ export default function AccountInfo({ user }) {
 
   return (
     <div className="common-container component-container">
-      <h1>Account Information</h1>
+      <h2>Account Information</h2>
       <div className="account-container">
         {user ? (
           <>

@@ -34,7 +34,6 @@ function App() {
       try {
         const currentUser = await axios.get('/api/checkLoginStatus');
         if (currentUser) {
-          console.log('User is logged in: ', currentUser.data);
           // isReady checks if checkLoginStatus has returned before redirecting a private route
           setAccount({
             ...account,
@@ -44,7 +43,7 @@ function App() {
           });
         }
       } catch (err) {
-        console.log('User is logged in');
+        console.log('User is already logged in');
       }
     };
     checkLoginStatus();
