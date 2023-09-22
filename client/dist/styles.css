@@ -183,10 +183,12 @@ button:hover {
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: #000538;
+  box-shadow: inset 0px 0px 5px 1px cyan;
   margin: 1% auto;
   padding: 0 20px;
-  border: 1px solid #888;
+  border: 1px solid cyan;
+  border-radius: 10px;
   width: 80%;
   height: 95%;
   display: flex;
@@ -204,28 +206,34 @@ button:hover {
 
 .feedback {
   display: flex;
-  /* justify-content: space-between;
-  height: 85%; */
+  justify-content: space-around;
+  height: 85%;
 }
 
 .bottom {
   height: 10%;
-  text-align: right;
-}
-
-.inner-feedback {
-  width: 49%;
-  border: 1px solid black;
-  height: 100%;
-  overflow-y: auto;
   text-align: center;
-  border-radius: 10px;
 }
 
 textarea {
   width: 90%;
   height: 190px;
   resize: none;
+}
+.inner-feedback {
+  width: 45%;
+  height: 100%;
+  overflow-y: auto;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.inner-feedback textarea {
+  background-color: rgba(0, 255, 255, 0.164);
+  border-radius: 5px;
+  margin: 5px;
+  color: white;
+  border: 1px solid cyan;
 }
 
 form {
@@ -237,6 +245,8 @@ form {
 
 .form-submit {
   margin-top: 10px;
+  padding: 5px 35px;
+  background-color: cyan;
 }
 
 .close {
@@ -260,7 +270,6 @@ form {
 
 .view-chat {
   border: 1px solid black;
-  background-color: white;
   height: 90%;
   overflow-y: auto
 }
@@ -277,12 +286,15 @@ form {
 
 .send-chat-btn {
   height: 100%;
-  width: 13%;
+  width: 18%;
+  border-radius: 5px;
 }
 
 .send-message {
   height: 90%;
-  width: 85%;
+  width: 80%;
+  border-radius: 5px;
+  padding: 0;
 }
 
 .username {
