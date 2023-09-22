@@ -2,7 +2,7 @@ import React from "react";
 
 function UserSolution({ submissions, selectedProblem }) {
   return (
-    <div className="user-solution container">
+    <div className="common-container" style={{ flex: 2 }}>
       <h2>Your Solution</h2>
       {submissions.length ? (
         submissions.map((submission) =>

@@ -33,7 +33,7 @@ function ChatViewer({ messages, userId, chatId, setLoader }) {
   };
 
   return (
-    <div className="chat-viewer container">
+    <div className="common-container" style={{ flex: 2 }}>
       <div className="view-chat">
         {messages.map((message) => (
           <div className={message.user_id === userId ? "right" : "left"}>

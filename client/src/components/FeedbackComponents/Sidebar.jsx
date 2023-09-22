@@ -2,7 +2,7 @@ import React from "react";
 
 function Sidebar({ chats, selectedProblem, handleClick, problems }) {
   return (
-    <div className="sidebar container">
+    <div className="common-container" style={{ flex: 1 }}>
       <h2>Messages</h2>
       {chats.length ? (
         chats.map((chat) =>
