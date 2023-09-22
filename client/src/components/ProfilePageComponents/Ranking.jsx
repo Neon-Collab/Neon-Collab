@@ -30,7 +30,7 @@ export default function Ranking({ id }) {
     <div className="common-container component-container">
       <h2>Global Ranking</h2>
       {rankNum ? (
-        <h2>{rank}</h2>
+        <h2 style={{ color: 'white' }}>{rank}</h2>
       ) : <h2>No rank available at this time</h2>}
     </div>
   );
