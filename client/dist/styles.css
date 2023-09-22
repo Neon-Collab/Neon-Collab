@@ -16,7 +16,7 @@ nav {
   height: 132px;
   padding: 0 40px;
   background-color: #000324;
-  box-shadow: inset 0px 0px 70px 2px #000643;
+  box-shadow: inset 0px 0px 50px 2px #000643;
   border-bottom: 1px solid cyan;
 }
 
@@ -105,13 +105,26 @@ button:hover {
   background-color: rgba(0, 255, 255, 0.5);
 }
 
+.rank-table {
+  padding-bottom: 20px;
+}
+.rank-table td {
+  border: 1px solid rgba(255, 0, 255, 0.50);
+  text-align: center;
+}
+
+.rank-table th {
+  background-color: rgba(255, 0, 255, 0.50);;
+  text-align: center;
+}
+
 .common-container {
   /* border: 2px solid red; */
   box-shadow: inset 0px 0px 5px 0px cyan;
   border-radius: 10px;
   margin: 10px;
   padding: 10px 20px;
-  background-color: #000540;
+  background-color: #000433;
   flex: wrap;
   display: flex;
   flex-direction: column;

@@ -17,7 +17,7 @@ function Leaderboard() {
   return (
     <div className="common-container">
       <h2>Leaderboard</h2>
-      <table>
+      <table className="rank-table">
         <thead>
           <tr>
             <th>Rank</th>

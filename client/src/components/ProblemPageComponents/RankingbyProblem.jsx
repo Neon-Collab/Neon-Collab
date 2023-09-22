@@ -29,8 +29,8 @@ function RankingbyProblem({ problemId }) {
 
   return (
     <div className="common-container">
-      <h2>Ranking for Problem {problemName}</h2>
-      <table>
+      <h2>Problem Ranking: {problemName}</h2>
+      <table className="rank-table">
         <thead>
           <tr>
             <th>Rank</th>
