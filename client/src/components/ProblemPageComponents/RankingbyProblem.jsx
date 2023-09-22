@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const tableStyles = {
+  border: '1px solid black',
+  width: '80%',
+  margin: '0 auto',
+  borderCollapse: 'collapse',
+  textAlign: 'center',
+};
+
+const thTdStyles = {
+  border: '1px solid black',
+  padding: '8px',
+  textAlign: 'center',
+};
+
 function RankingbyProblem({ problemId }) {
   const [rankings, setRankings] = useState([]);
   const [problemName, setProblemName] = useState('');
@@ -29,21 +43,21 @@ function RankingbyProblem({ problemId }) {
 
   return (
     <div className="common-container">
-      <h2>Ranking for Problem {problemName}</h2>
-      <table>
+      <h2 style={{ color: 'magenta', textAlign: 'center' }}>Ranking for Problem: {problemName}</h2>
+      <table style={tableStyles}>
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>User ID</th>
-            <th>Score</th>
+            <th style={thTdStyles}>Rank</th>
+            <th style={thTdStyles}>User ID</th>
+            <th style={thTdStyles}>Score</th>
           </tr>
         </thead>
         <tbody>
           {rankings.map((rank, index) => (
             <tr key={rank.user_id}>
-              <td>{index + 1}</td>
-              <td>{rank.user_id}</td>
-              <td>{(Number(rank.score) * 100).toFixed(2)}%</td>
+              <td style={thTdStyles}>{index + 1}</td>
+              <td style={thTdStyles}>{rank.user_id}</td>
+              <td style={thTdStyles}>{(Number(rank.score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>
