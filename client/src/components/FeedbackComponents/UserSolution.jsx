@@ -1,4 +1,6 @@
 import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 function UserSolution({ submissions, selectedProblem, userId }) {
   return (
@@ -8,7 +10,11 @@ function UserSolution({ submissions, selectedProblem, userId }) {
         submissions.map((submission) =>
           submission.user_id === userId &&
           submission.problem_id === selectedProblem ? (
-            <div>{submission.code}</div>
+            <div>
+              <SyntaxHighlighter language="javascript" style={atomOneDark}>
+                {submission.code}
+              </SyntaxHighlighter>
+            </div>
           ) : (
             <div />
           )

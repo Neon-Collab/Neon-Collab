@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 function FeedbackForm({ chatId, userId, toggleVisibility, problemId }) {
   const [partnerSolution, setPartnerSolution] = useState("");
@@ -52,7 +54,11 @@ function FeedbackForm({ chatId, userId, toggleVisibility, problemId }) {
           <h3>Your Review</h3>
         </div>
         <div className="feedback">
-          <div className="inner-feedback">{partnerSolution}</div>
+          <div className="inner-feedback">
+            <SyntaxHighlighter language="javascript" style={atomOneDark}>
+              {partnerSolution}
+            </SyntaxHighlighter>
+          </div>
           <div className="inner-feedback">
             <form>
               <label htmlFor="pros">Pros</label>
