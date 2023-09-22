@@ -59,7 +59,7 @@ function Feedback() {
     axios
       .get("/api/chats", {
         params: {
-          id: 1, // this will be the current user's id
+          id: userId,
         },
       })
       .then((results) => setChatsAndSelected(results.data));
@@ -69,7 +69,7 @@ function Feedback() {
     axios
       .get("/api/submissions", {
         params: {
-          id: 1,
+          id: userId,
         },
       })
       .then((results) => setProblemId(results.data[0].problem_id));
