@@ -8,8 +8,6 @@ import ProblemsSolved from '../components/ProfilePageComponents/ProblemsSolved';
 import AppContext from '../contexts/AppContext.jsx';
 
 export default function ProfilePage() {
-  // Move useEffect to get user data of current logged in user here
-  // Pass down user_id to Ranking and username to AccountInfo
   const { account, setAccount } = useContext(AppContext);
   const [user, setUser] = useState(null);
 

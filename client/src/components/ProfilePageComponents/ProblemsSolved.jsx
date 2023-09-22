@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function ProblemsSolved({ id }) {
-  const [userID, setUserID] = useState(27);
   const [solved, setSolved] = useState(0);
 
   useEffect(() => {
@@ -13,7 +12,7 @@ export default function ProblemsSolved({ id }) {
   }, []);
   return (
     <div className="common-container component-container">
-      <h1>Problems Solved</h1>
+      <h1>Problems Submitted</h1>
       <h2>{solved}</h2>
     </div>
   );
