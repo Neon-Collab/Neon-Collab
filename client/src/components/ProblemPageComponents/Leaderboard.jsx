@@ -27,11 +27,10 @@ function Leaderboard() {
         console.error(error);
       });
   }, []);
-
+  //  I also created table styles - feel free to try them or keep yours!
+  // <table className="rank-table">
   return (
     <div className="common-container">
-      //  I also created table styles - feel free to try them or keep yours!
-      // <table className="rank-table">
       <h2 style={{ color: 'magenta', textAlign: 'center' }}>Leaderboard</h2>
       <table style={tableStyles}>
         <thead>
