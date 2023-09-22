@@ -34,7 +34,7 @@ CREATE TABLE chat(
     reviewer_id INT REFERENCES users(user_id)
 );
 
-DROP TABLE IF EXISTS message CASCADE;
+DROP TABLE IF EXISTS messages CASCADE;
 CREATE TABLE messages(
     chat_id INT REFERENCES chat(chat_id),
     user_id INT REFERENCES users(user_id),
