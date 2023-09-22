@@ -114,6 +114,8 @@ button:hover {
 .rank-table td {
   border: 1px solid rgba(255, 0, 255, 0.50);
   text-align: center;
+  background-color: rgba(255, 0, 255, 0.076);
+  width: 30%;
 }
 
 .rank-table th {
