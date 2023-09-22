@@ -1,6 +1,6 @@
 import React from "react";
 
-function Sidebar({ chats, selectedProblem, handleClick, problems }) {
+function Sidebar({ chats, selectedProblem, handleClick, problems, messages }) {
   return (
     <div className="common-container" style={{ flex: 1 }}>
       <h2>Messages</h2>

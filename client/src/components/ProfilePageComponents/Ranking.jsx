@@ -3,8 +3,8 @@ import axios from 'axios';
 import AppContext from '../../contexts/AppContext.jsx';
 
 export default function Ranking({ id }) {
-  const [userID, setUserID] = useState(27);
   const [rank, setRank] = useState(null);
+  const [rankNum, setRankNum] = useState(null);
   const { account, setAccount } = useContext(AppContext);
 
   const getSuffix = (num) => {
@@ -23,12 +23,15 @@ export default function Ranking({ id }) {
     axios.get(`/api/rank/search/${id}`)
       .then((response) => {
         setRank((response.data.rank + getSuffix(response.data.rank)));
+        setRankNum(response.data.rank);
       });
   }, []);
   return (
     <div className="common-container component-container">
       <h2>Global Ranking</h2>
-      <h3>{rank}</h3>
+      {rankNum ? (
+        <h2>{rank}</h2>
+      ) : <h2>No rank available at this time</h2>}
     </div>
   );
 }
