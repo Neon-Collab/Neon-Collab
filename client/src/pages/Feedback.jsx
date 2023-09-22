@@ -13,7 +13,7 @@ function Feedback() {
   const [selectedProblem, setSelectedProblem] = useState("");
   const [chatId, setChatId] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [userId, setUserId] = useState(1); // this will be set to current user's id
+  const [userId, setUserId] = useState(5); // this will be set to current user's id
   const [problems, setProblems] = useState([]);
   const [loader, setLoader] = useState(true);
   const [problemId, setProblemId] = useState(1);
@@ -21,6 +21,10 @@ function Feedback() {
   const [postedSubmissions, setPostedSubmissions] = useState(0);
   const [modal, setModal] = useState(true);
   const { weekend } = useContext(WeekendContext);
+
+  const render = () => {
+    setLoader((prev) => !prev);
+  };
 
   const toggleVisibility = () => {
     setModal(false);
@@ -36,6 +40,16 @@ function Feedback() {
     setSubmissions(submissionsPromise);
     setQueryOfSubmissions(submissionsPromise.length);
   };
+
+  useEffect(() => {
+    if (weekend) {
+      if (queryOfSubmissions > postedSubmissions) {
+        createPairs(submissions.slice(postedSubmissions));
+      } else {
+        console.log("nothing to post");
+      }
+    }
+  }, [weekend]);
 
   useEffect(() => {
     axios
@@ -74,6 +88,12 @@ function Feedback() {
   }, [chatId, loader, modal]);
 
   useEffect(() => {
+    if (messages.length) {
+      setModal(false);
+    }
+  }, [messages]);
+
+  useEffect(() => {
     axios
       .get("/api/problems")
       .then((results) => {
@@ -107,6 +127,7 @@ function Feedback() {
         }
       }
     });
+
     resultsArr.forEach((pair) => {
       axios.post("/api/chats/", {
         problem_id: pair[0].problem_id,
@@ -121,17 +142,6 @@ function Feedback() {
       .get("/api/chat")
       .then((results) => setPostedSubmissions(results.data.length * 2));
   }, [weekend]);
-
-  if (weekend) {
-    if (queryOfSubmissions > postedSubmissions) {
-      createPairs(submissions);
-    } else {
-      console.log("nothing to post");
-    }
-  }
-
-  console.log(queryOfSubmissions);
-  console.log(postedSubmissions);
 
   return (
     <div className="feedback-container">
@@ -148,16 +158,18 @@ function Feedback() {
         selectedProblem={selectedProblem}
         handleClick={handleClick}
         problems={problems}
+        messages={messages}
       />
       <UserSolution
         submissions={submissions}
         selectedProblem={selectedProblem}
+        userId={userId}
       />
       <ChatViewer
         messages={messages}
         userId={userId}
         chatId={chatId}
-        setLoader={setLoader}
+        render={render}
       />
     </div>
   );
