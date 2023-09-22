@@ -3,7 +3,7 @@ import React from "react";
 function Sidebar({ chats, selectedProblem, handleClick, problems }) {
   return (
     <div className="sidebar container">
-      <h1>Messages</h1>
+      <h2>Messages</h2>
       {chats.length ? (
         chats.map((chat) =>
           chat.problem_id === selectedProblem ? (

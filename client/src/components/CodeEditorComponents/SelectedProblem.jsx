@@ -9,7 +9,7 @@ function SelectedProblem({ problem }) {
 
   return (
     <div className="common-container">
-      <h1>{problem.problem_name}</h1>
+      <h2>{problem.problem_name}</h2>
       <p>{problem.description}</p>
       <p>{problem.difficulty}</p>
     </div>

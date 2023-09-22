@@ -13,8 +13,8 @@ export default function ProblemsSolved({ id }) {
   }, []);
   return (
     <div className="common-container component-container">
-      <h1>Problems Solved</h1>
-      <h2>{solved}</h2>
+      <h2>Problems Solved</h2>
+      <h3>{solved}</h3>
     </div>
   );
 }

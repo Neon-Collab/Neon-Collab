@@ -27,8 +27,8 @@ export default function Ranking({ id }) {
   }, []);
   return (
     <div className="common-container component-container">
-      <h1>Global Ranking</h1>
-      <h2>{rank}</h2>
+      <h2>Global Ranking</h2>
+      <h3>{rank}</h3>
     </div>
   );
 }

@@ -9,7 +9,7 @@ function Leaderboard() {
       .then((response) => {
         setLeaderboardData(response.data);
       })
-      .catch((error)=> {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
