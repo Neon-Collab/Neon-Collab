@@ -34,7 +34,7 @@ module.exports = {
     return rankedUsers;
   },
   getUserRanks: async () => {
-    const text = 'SELECT user_id,total_score,rank from rankings ORDER BY rank';
+    const text = 'SELECT r.user_id,u.username,r.total_score,r.rank from rankings r JOIN users u ON r.user_id = u.user_id ORDER BY rank';
     const results = await db.query(text);
     return results.rows;
   },
