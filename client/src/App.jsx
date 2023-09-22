@@ -81,7 +81,7 @@ function App() {
                   path="/problemspage"
                   element={(
                     <ProtectedRoute account={account}>
-                      <ProblemsPage />
+                      <ProblemsPage userId={account.username} />
                     </ProtectedRoute>
                   )}
                 />

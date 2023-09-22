@@ -25,7 +25,7 @@ module.exports = {
   },
 
   getSubmissionsForProblem: async (problemId) => {
-    const query = 'SELECT * from submission WHERE problem_id = $1';
+    const query = 'SELECT s.*, u.username from submission s JOIN users u on u.user_id = s.user_id WHERE problem_id = $1';
     const result = await pool.query(query, [problemId]);
     return result;
   },

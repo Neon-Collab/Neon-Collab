@@ -35,7 +35,7 @@ function Leaderboard() {
         <thead>
           <tr>
             <th>Rank</th>
-            <th>User ID</th>
+            <th>User Name</th>
             <th>Score</th>
           </tr>
         </thead>
@@ -43,8 +43,8 @@ function Leaderboard() {
           {leaderboardData.map((user) => (
             <tr key={user.user_id}>
               <td>{user.rank}</td>
-              <td>{user.user_id}</td>
-              <td>{(Number(user.total_score) * 100).toFixed(2)}%</td>
+              <td>{user.username}</td>
+              <td>{(Number(user.total_score) * 100)}</td>
             </tr>
           ))}
         </tbody>

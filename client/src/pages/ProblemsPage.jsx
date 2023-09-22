@@ -16,14 +16,15 @@ import WeekendContext from '../contexts/WeekendContext.jsx';
 //   );
 // }
 
-function WeekdayPage({ selectedProblemId, setSelectedProblemId }) {
+function WeekdayPage({ selectedProblemId, setSelectedProblemId, userId }) {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ flex: 1 }}>
           <ProblemsList
             selectedProblemId={selectedProblemId}
-            setSelectedProblemId={setSelectedProblemId} />
+            setSelectedProblemId={setSelectedProblemId}
+            userId={userId} />
         </div>
         <div style={{ flex: 1 }}>
           <Leaderboard />
@@ -48,7 +49,7 @@ function WeekendPage({ selectedProblemId }) {
   );
 }
 
-function ProblemsPage() {
+function ProblemsPage({userId}) {
   // // get the current day of the week, 0 for Sunday, 1 for Monday, etc
   // const currentDay = new Date().getDay();
   // // check for the day, if it's Sunday or Friday or Saturday, isWeekendView
@@ -62,7 +63,7 @@ function ProblemsPage() {
     <div>
       {weekend && selectedProblemId
         ? <WeekendPage selectedProblemId={selectedProblemId} />
-        : <WeekdayPage selectedProblemId={selectedProblemId} setSelectedProblemId={setSelectedProblemId} />
+        : <WeekdayPage userId={userId} selectedProblemId={selectedProblemId} setSelectedProblemId={setSelectedProblemId} />
     }
     </div>
   );

@@ -48,7 +48,7 @@ function RankingbyProblem({ problemId }) {
         <thead>
           <tr>
             <th>Rank</th>
-            <th>User ID</th>
+            <th>User Name</th>
             <th>Score</th>
           </tr>
         </thead>
@@ -56,7 +56,7 @@ function RankingbyProblem({ problemId }) {
           {rankings.map((rank, index) => (
             <tr key={rank.user_id}>
               <td>{index + 1}</td>
-              <td>{rank.user_id}</td>
+              <td>{rank.username}</td>
               <td>{(Number(rank.score) * 100).toFixed(2)}%</td>
             </tr>
           ))}
