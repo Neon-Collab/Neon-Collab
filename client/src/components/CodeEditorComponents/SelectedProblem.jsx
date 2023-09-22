@@ -8,13 +8,11 @@ function SelectedProblem({ problem }) {
   }
 
   return (
-    <div>
+    <div className="common-container">
       <h1>{problem.problem_name}</h1>
       <p>{problem.description}</p>
       <p>{problem.difficulty}</p>
     </div>
   );
 }
-
-
 export default SelectedProblem;
