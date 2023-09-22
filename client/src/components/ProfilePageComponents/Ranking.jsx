@@ -28,7 +28,7 @@ export default function Ranking({ id }) {
   }, []);
   return (
     <div className="common-container component-container">
-      <h1>Global Ranking</h1>
+      <h2>Global Ranking</h2>
       {rankNum ? (
         <h2>{rank}</h2>
       ) : <h2>No rank available at this time</h2>}

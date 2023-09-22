@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Text } from 'react';
 import axios from 'axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -35,7 +35,7 @@ function Navbar() {
       console.error(err);
     }
   };
-
+  // alternate profile photo: https://i.ibb.co/q9TpWV6/Ash-Squirtle.png
   return (
     <nav>
       <div>
@@ -52,14 +52,16 @@ function Navbar() {
           Feedback
         </Link>
       </div>
-      <button type='button' onClick={() => toggleWeekend()}>
-        Change Weekday
-      </button>
+
       <div className="profile-logout">
-        <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
-          <img className='profile-pic' src='https://i.stack.imgur.com/frlIf.png' alt='profile pic' activeClassname='active-link'/>
-        </Link>
+        <button type='button' onClick={() => toggleWeekend()}>
+          Change Weekday
+        </button>
         <input type='button' value='Sign Out' onClick={logout} />
+        <button type="button" onClick={() => navigate('/profile')}>Hello, {account.username}!</button>
+        <Link className={'/profile' === location.pathname ? 'active-link link' : 'link'} to='/profile'>
+          <img className='profile-pic' src='https://i.ibb.co/R4rJ15t/pokemon-lets-go-find-squirtle-copy.png' alt='profile pic' activeClassname='active-link'/>
+        </Link>
       </div>
     </nav>
   );

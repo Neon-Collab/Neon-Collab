@@ -48,8 +48,8 @@ function FeedbackForm({ chatId, userId, toggleVisibility, problemId }) {
       <div className="modal-content">
         <div className="close" />
         <div className="top">
-          <h4>Code To Review</h4>
-          <h4>Your Review</h4>
+          <h3>Code To Review</h3>
+          <h3>Your Review</h3>
         </div>
         <div className="feedback">
           <div className="inner-feedback">{partnerSolution}</div>
