@@ -60,7 +60,7 @@ The dream behind Neon Collab is to create a cyber-punk-themed platform where a c
 
 ## Login Page
 The login page utilizes Firebase authentication to create and store account information. New users must choose a unique username, email address, and secure password when creating an account. The custom page graphics are backed by react-particles.
-![Login Image](./client/dist/assets/Login_Page.gif)
+![Login Image](./client/dist/assets/Login_page.gif)
 ## Problems Page
 On Monday to Thursday, users are able to see a list of 4 problems and an overall leaderboard for the past 3 weeks. Users will be able to choose one from four problems each week to practice. When clicking on “select problem”, users are directed to the code editor page. On Friday to Sunday, users can see the average score for each problem of the week, as well as a problem-specific ranking including all the users who completed the same problem. 
 ![Problems Weekday](./client/dist/assets/Problems_Mon-Thu.png)
