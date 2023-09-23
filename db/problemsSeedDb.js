@@ -20,7 +20,6 @@ const seedDatabase = async () => {
         };
 
         await pool.query(testInsert);
-        console.log(`Test case for ${problemId} inserted successfully.`);
       }
     } catch (err) {
       console.error('Error during database seeding:', err);

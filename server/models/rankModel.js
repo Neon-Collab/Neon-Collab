@@ -30,7 +30,6 @@ module.exports = {
         console.log(error);
       }
     }
-    // console.log(rankedUsers);
     return rankedUsers;
   },
   getUserRanks: async () => {

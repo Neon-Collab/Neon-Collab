@@ -15,7 +15,6 @@ module.exports = {
     const text = 'SELECT * FROM problems WHERE problem_id = $1;';
     const values = [id];
     const results = await db.query(text, values);
-    console.log(results.rows);
     return results.rows[0];
   },
   getProblemsWithScores: async () => {

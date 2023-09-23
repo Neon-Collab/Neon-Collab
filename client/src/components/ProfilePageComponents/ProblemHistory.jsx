@@ -13,8 +13,6 @@ export default function ProblemHistory({ id }) {
       });
   }, []);
 
- console.log(history)
-
   return (
     <div className="common-container component-container">
       <h2>Problem History</h2>
