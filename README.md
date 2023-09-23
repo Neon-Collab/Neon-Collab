@@ -54,7 +54,7 @@ The dream behind Neon Collab is to create a cyber-punk-themed platform where a c
 
 6. **Run the application**
    `npm run server-dev`
-   `npm run server-dev`
+   `npm run client-dev`
 
 ## Project Overview & Demos
 
