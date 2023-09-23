@@ -21,7 +21,6 @@ function Navbar() {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  console.log('This is the location.pathname', '/problemspage' === location.pathname)
   const logout = async () => {
     try {
       await axios.get('/api/logout');
